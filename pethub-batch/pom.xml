@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>kr.pethub</groupId>
-  <artifactId>pethub</artifactId>
+  <artifactId>pethub-batch</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>pethub-bach</name>
+  <name>pethub-batch</name>
   <url>http://www.pethub.kr</url>
-  <description>pethub-bach</description>
+  <description>pethub-batch</description>
   
   <properties>
 		<java.version>1.8</java.version>
@@ -28,7 +28,7 @@
 		<deploy.target.dir>D:/99.tmp/spring_batch</deploy.target.dir>
 		<jar.name>pethub-batch</jar.name>
 		
-	</properties> 
+	</properties>
 	
 	<profiles>
 		<profile>
@@ -54,7 +54,6 @@
 		</profile>
 		
 	</profiles>
-	
 	
 	<dependencies>
 	    <!-- Spring -->
