@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import kr.pethub.job.crawling.service.PethubService;
+import kr.pethub.job.crawler.service.PethubService;
 
 @Component
 public class jobHandler {
@@ -29,7 +29,7 @@ public class jobHandler {
 		
 		if("crawling".equals(job)){
 			
-			crawlingService.getId();
+			crawlingService.crawling();
 			
 			logger.info("startDt : {} : ",  params.get("startDt" ));
 			logger.info("endDt : {} : ",  params.get("endDt" ));

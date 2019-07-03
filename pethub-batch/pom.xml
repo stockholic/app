@@ -247,33 +247,48 @@
 					<encoding>${maven.encoding}</encoding>
 				</configuration>
 			</plugin>
-		
-		   <plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-assembly-plugin</artifactId>
-			  <executions>
-			    <execution>
-			      <phase>package</phase>
-			      <goals>
-			        <goal>single</goal>
-			      </goals>
-			      <configuration>
-			      <outputDirectory>${deploy.target.dir}</outputDirectory>
-			       <finalName>${jar.name}</finalName>
-			        <archive>
-			          <manifest>
-			            <mainClass>kr.pethub.initBatch</mainClass>
-			          </manifest>
-			        </archive>
-			        <descriptorRefs>
-			          <descriptorRef>jar-with-dependencies</descriptorRef>
-			        </descriptorRefs>
-			         <appendAssemblyId>false</appendAssemblyId>
-			      </configuration>
-			    </execution>
-			  </executions>
-		</plugin>
 			
+			 <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<finalName>${jar.name}</finalName>
+		        	<outputDirectory>${deploy.target.dir}</outputDirectory>
+				 <archive>
+				   <manifest>
+						<addClasspath>true</addClasspath>
+						<mainClass>kr.pethub.initBatch</mainClass>
+						<classpathPrefix>lib/</classpathPrefix>
+				   </manifest>
+				   
+				    <manifestEntries>
+				        <Class-Path>./crawling/</Class-Path>
+				     </manifestEntries>
+				   
+				 </archive>
+				</configuration>
+			  </plugin>
+			  
+			  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+				  <execution>
+					<id>copy-dependencies</id>
+					<phase>package</phase>
+					<goals>
+					    <goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+						<overWrite>true</overWrite>
+					    <outputDirectory>${deploy.target.dir}/lib</outputDirectory>
+					</configuration>
+				    </execution>
+				</executions>
+			  </plugin>
+			  
 		</plugins>
 	</build>
 </project>

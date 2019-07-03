@@ -1,4 +1,4 @@
-package kr.pethub.job.crawling.dao;
+package kr.pethub.job.crawler.dao;
 
 import org.springframework.stereotype.Repository;
 
