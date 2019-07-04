@@ -6,11 +6,12 @@
 
 	<select id="selectSiteLinkList" resultType="kr.pethub.job.crawler.vo.SiteLink">
 		SELECT 
-		  si.site_nm
-		  ,sl.link_nm
-		  ,sl.link_url
-		  ,sl.link_class
-		  ,sl.link_method
+		     si.site_srl
+      		, sl.link_srl
+		  	, sl.link_nm
+		  	, sl.link_url
+		  	, sl.link_class
+		  	, sl.link_method
 		FROM site_info si, site_link sl
 		WHERE si.site_srl = sl.link_srl
 	</select>
@@ -68,5 +69,18 @@
 	<delete id="deleteSiteLinkData">
 		DELETE FROM  site_link_data WHERE data_srl = #{dataSrl}
 	</delete>
+	
+	
+	<insert id="insertSiteLinkErrorLog">
+		INSERT INTO site_link_error_log(
+			  log_title
+			, log_message
+			, reg_dt
+		) VALUES (
+			 #{LOG_TITLE}
+			, #{LOG_MESSAGE}
+			, SYSDATE()
+		)
+	</insert>
 
 </mapper>  

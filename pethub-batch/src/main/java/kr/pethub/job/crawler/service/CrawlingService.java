@@ -26,6 +26,7 @@ public class CrawlingService {
 	@SuppressWarnings("unchecked")
 	public void crawling() {
 		
+		//사이트 Crawling 대상 URL
 		List<SiteLink> linkList = crawlingDao.selectSiteLinkList();
 		
 		for( SiteLink lst : linkList ) {
@@ -52,6 +53,8 @@ public class CrawlingService {
 					logger.debug("CONTENT : {}",  list.get(i).getDataContent());
 					
 					SiteLinkData siteLinkData = new SiteLinkData();
+					siteLinkData.setSiteSrl(lst.getSiteSrl());
+					siteLinkData.setLinkSrl(lst.getLinkSrl());
 					siteLinkData.setDataId(list.get(i).getDataId());
 					siteLinkData.setDataTitle(list.get(i).getDataTitle());
 					siteLinkData.setDataLink(list.get(i).getDataLink());
@@ -66,7 +69,7 @@ public class CrawlingService {
 				}
 				
 			}catch(Exception e) {
-				logger.error(e.toString());
+				logger.error(">>>>>>>>>>>>>" + e.toString());
 				e.printStackTrace();
 			}
 			

@@ -37,5 +37,15 @@ CREATE TABLE `site_link_data` (
   `upt_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일',
   PRIMARY KEY (`data_srl`),
   KEY data_id (site_srl, link_srl, data_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사이트데이터';
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='사이트데이터';
+;
+
+
+CREATE TABLE `site_link_error_log` (
+  `log_srl` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
+  `log_title` varchar(200) DEFAULT NULL COMMENT '에러제목',
+  `log_message` text COMMENT '에러내용',
+  `reg_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
+  PRIMARY KEY (`log_srl`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='사이트에러로그';
 ;

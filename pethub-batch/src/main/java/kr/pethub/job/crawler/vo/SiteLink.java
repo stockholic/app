@@ -2,12 +2,26 @@ package kr.pethub.job.crawler.vo;
 
 public class SiteLink {
 	
+	private String linkSrl;
+	private String siteSrl;
 	private String siteNm;
 	private String linkNm;
 	private String linkUrl;
 	private String linkClass;
 	private String linkMethod;
 	
+	public String getLinkSrl() {
+		return linkSrl;
+	}
+	public void setLinkSrl(String linkSrl) {
+		this.linkSrl = linkSrl;
+	}
+	public String getSiteSrl() {
+		return siteSrl;
+	}
+	public void setSiteSrl(String siteSrl) {
+		this.siteSrl = siteSrl;
+	}
 	public String getSiteNm() {
 		return siteNm;
 	}
@@ -38,4 +52,5 @@ public class SiteLink {
 	public void setLinkMethod(String linkMethod) {
 		this.linkMethod = linkMethod;
 	}
+	
 }

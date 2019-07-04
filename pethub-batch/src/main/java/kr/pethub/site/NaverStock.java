@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ctc.wstx.sw.EncodingXmlWriter;
+
 import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 

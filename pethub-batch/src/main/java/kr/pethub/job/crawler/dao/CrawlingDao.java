@@ -1,6 +1,7 @@
 package kr.pethub.job.crawler.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import kr.pethub.job.crawler.vo.SiteLinkData;
 public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	
 	/**
-	 * 사이트 URL 목록
+	 * 사이트 Crawling 대상 URL 목록
 	 * @return
 	 */
 	public List<SiteLink> selectSiteLinkList() {
@@ -20,7 +21,7 @@ public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	}
 	
 	/**
-	 * 사이트 데이타 조회
+	 * 사이트 데이터 조회
 	 * @param siteLinkData
 	 * @return
 	 */
@@ -29,7 +30,7 @@ public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	}
 	
 	/**
-	 * 사이트 데이타 등록
+	 * 사이트 데이터 등록
 	 * @param siteLinkData
 	 * @return
 	 */
@@ -38,7 +39,7 @@ public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	}
 	
 	/**
-	 * 사이트 데이타 수정
+	 * 사이트 데이터 수정
 	 * @param siteLinkData
 	 * @return
 	 */
@@ -47,12 +48,21 @@ public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	}
 	
 	/**
-	 * 사이트 데이타 삭제
+	 * 사이트 데이터 삭제
 	 * @param dataSrl
 	 * @return
 	 */
 	public int deleteSiteLinkData(Integer dataSrl) {
 		return delete("deleteSiteLinkData", dataSrl);
+	}
+	
+	/**
+	 * 사이트 데이터 에러 로그 등록
+	 * @param siteLinkData
+	 * @return
+	 */
+	public int insertSiteLinkErrorLog(Map<String,String> map) {
+		return insert("insertSiteLinkErrorLog", map);
 	}
 	
 }
