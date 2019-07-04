@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.pethub.job.crawler.dao.CrawlingDao">
+
+	<select id="selectCrawlingList" resultType="int">
+	SELECT 
+	  si.site_nm
+	  ,sl.link_nm
+	  ,sl.link_url
+	  ,sl.link_class
+	  ,sl.link_method
+	FROM site_info si, site_link sl
+	WHERE si.site_srl = sl.link_srl
+	</select>
+
+
+</mapper>  

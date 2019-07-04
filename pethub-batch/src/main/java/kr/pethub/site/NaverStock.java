@@ -11,16 +11,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.pethub.core.utils.JsoupUtil;
-import kr.pethub.job.crawler.vo.CrawlingInfo;
+import kr.pethub.job.crawler.vo.SiteData;
 
 public class NaverStock {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	public List<CrawlingInfo> crawling() {
+	public List<SiteData> crawling() {
 		
-		List<CrawlingInfo> list = new ArrayList<CrawlingInfo>();
+		List<SiteData> list = new ArrayList<SiteData>();
 		
 		String url = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		String selector = "#searchResult li";
@@ -33,7 +33,7 @@ public class NaverStock {
 			Elements elements = JsoupUtil.getElements(url, selector);
 			
 			for( Element ele :  elements) {
-				CrawlingInfo cli  = new CrawlingInfo();
+				SiteData cli  = new SiteData();
 				
 				cli.setTitle( ele.getElementsByClass("stock_item").text() );		//제목
 				

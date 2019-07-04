@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kr.pethub.job.crawler.vo.CrawlingInfo;
+import kr.pethub.job.crawler.vo.SiteData;
 import kr.pethub.site.NaverStock;
 
 public class NaverStockTest {
@@ -17,7 +17,7 @@ public class NaverStockTest {
 	public void crawling() {
 		
 		NaverStock tc = new NaverStock();
-		List<CrawlingInfo> list =   tc.crawling();
+		List<SiteData> list =   tc.crawling();
 		
 		for(int i = 0; i < list.size(); i++ ) {
 			logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));

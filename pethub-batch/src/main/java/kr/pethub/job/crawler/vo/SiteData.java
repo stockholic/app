@@ -1,6 +1,6 @@
 package kr.pethub.job.crawler.vo;
 
-public class CrawlingInfo {
+public class SiteData {
 	
 	private String id;
 	private String title;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.pethub.job.crawler.dao.CrawlingDao;
-import kr.pethub.job.crawler.vo.CrawlingInfo;
+import kr.pethub.job.crawler.vo.SiteData;
 
 @Service
 public class CrawlingService {
@@ -32,7 +32,7 @@ public class CrawlingService {
 			if(obj == null) obj = clasz.newInstance();
 			
 			Method method = clasz.getMethod("crawling");
-			List<CrawlingInfo> list =  (List<CrawlingInfo>) method.invoke(obj);
+			List<SiteData> list =  (List<SiteData>) method.invoke(obj);
 			
 			for(int i = 0; i < list.size(); i++ ) {
 				logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));
