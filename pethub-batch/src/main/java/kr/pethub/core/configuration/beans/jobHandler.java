@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import kr.pethub.job.crawler.service.PethubService;
+import kr.pethub.job.crawler.service.CrawlingService;
 
 @Component
 public class jobHandler {
@@ -15,7 +15,7 @@ public class jobHandler {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	private PethubService crawlingService;
+	private CrawlingService crawlingService;
 	
 	/**
 	 * job 분기처리
