@@ -4,7 +4,7 @@
 
 <mapper namespace="kr.pethub.job.crawler.dao.CrawlingDao">
 
-	<select id="selectCrawlingList" resultType="int">
+	<select id="selectSiteLinkList" resultType="int">
 	SELECT 
 	  si.site_nm
 	  ,sl.link_nm
