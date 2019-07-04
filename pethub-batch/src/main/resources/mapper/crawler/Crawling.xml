@@ -58,12 +58,10 @@
 			 data_title = #{dataTitle}
 			, data_link = #{dataLink}
 			, data_img = #{dataImg}
-			, data_content = #{dataContent}
 			, upt_dt = SYSDATE()
 		WHERE 	site_srl = #{siteSrl}
 		AND site_srl = #{linkSrl}
 		AND data_id = #{dataId}
-			
 	</update>
 	
 	<delete id="deleteSiteLinkData">

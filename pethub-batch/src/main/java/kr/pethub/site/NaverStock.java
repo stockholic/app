@@ -20,49 +20,53 @@ public class NaverStock {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	public List<SiteLinkData> crawling() {
+	/**
+	 * 대상 목록 추출
+	 * @return
+	 */
+	public List<SiteLinkData> getList() {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
 		String url = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		String selector = "#searchResult li";
-		
 		String patternId ="(.*)(code=)([0-9]+)";
-		
 
-		try {
+		String contentUrl = "https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=";
+		
+		Elements elements = JsoupUtil.getElements(url, selector);
+		
+		for( Element ele :  elements) {
+			SiteLinkData cli  = new SiteLinkData();
 			
-			Elements elements = JsoupUtil.getElements(url, selector);
+			cli.setDataTitle( ele.getElementsByClass("stock_item").text() );		//제목
 			
-			for( Element ele :  elements) {
-				SiteLinkData cli  = new SiteLinkData();
-				
-				cli.setDataTitle( ele.getElementsByClass("stock_item").text() );		//제목
-				
-				String link = ele.getElementsByTag("a").attr("href").trim();	//링크
-				cli.setDataLink( link );															
-				
-				//아이디 추출
-				String id = link.replaceAll(patternId, "$3");
-				cli.setDataId( id );
-				
-				//내용 추출	
-				Elements contents = JsoupUtil.getElements("https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=" + id, ".total_lst" );
-				
-				cli.setDataContent( contents.text() );
-				
-				list.add(cli);
-			}
-	
-	
-		} catch (Exception e) {
-			logger.error(e.toString());
-			e.printStackTrace();
+			String link = ele.getElementsByTag("a").attr("href").trim();	//링크
+			cli.setDataLink( link );
+			cli.setContentLink( contentUrl );
+			
+			//아이디 추출
+			String dataId = link.replaceAll(patternId, "$3");
+			cli.setDataId( dataId );
+			
+			list.add(cli);
 		}
+
 
 		return list;
 	}
 	
+	/**
+	 * 내용 추출
+	 * @return
+	 */
+	public String getContent( SiteLinkData siteLinkData ) {
+
+		String selector = ".total_lst";
+		Elements contents = JsoupUtil.getElements(siteLinkData.getContentLink() + siteLinkData.getDataId() , selector );
+		
+		return contents.text();
+	}
 	
 	
 }

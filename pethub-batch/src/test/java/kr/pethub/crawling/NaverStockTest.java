@@ -24,7 +24,7 @@ public class NaverStockTest extends BaseTestCase{
 	public void crawling(){
 		
 		NaverStock tc = new NaverStock();
-		List<SiteLinkData> list =   tc.crawling();
+		List<SiteLinkData> list =   tc.getList();
 		
 		for(int i = 0; i < list.size(); i++ ) {
 			logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));

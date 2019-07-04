@@ -50,7 +50,7 @@ public class CrawlingService {
 					logger.debug("TITLE : {}",  list.get(i).getDataTitle());
 					logger.debug("LINK : {}",  list.get(i).getDataLink());
 					logger.debug("IMG : {}",  list.get(i).getDataImg());
-					logger.debug("CONTENT : {}",  list.get(i).getDataContent());
+//					logger.debug("CONTENT : {}",  list.get(i).getDataContent());
 					
 					SiteLinkData siteLinkData = new SiteLinkData();
 					siteLinkData.setSiteSrl(lst.getSiteSrl());
@@ -59,51 +59,27 @@ public class CrawlingService {
 					siteLinkData.setDataTitle(list.get(i).getDataTitle());
 					siteLinkData.setDataLink(list.get(i).getDataLink());
 					siteLinkData.setDataImg(list.get(i).getDataImg());
+					
+					
 					siteLinkData.setDataContent(list.get(i).getDataContent());
 					
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
+						
+						Method content = clasz.getMethod("getContent", SiteLinkData.class);
+						content.invoke(obj, siteLinkData);
+						
 						crawlingDao.insertSiteLinkData(siteLinkData);
 					}
 					
 				}
 				
 			}catch(Exception e) {
-				logger.error(">>>>>>>>>>>>>" + e.toString());
 				e.printStackTrace();
 			}
 			
 			
 		}
-		
-		/*
-		Object obj = null;
-		
-		try {
-			
-			Class<?> clasz = Class.forName("kr.pethub.site.NaverStock");
-			if(obj == null) obj = clasz.newInstance();
-			
-			Method method = clasz.getMethod("crawling");
-			List<SiteData> list =  (List<SiteData>) method.invoke(obj);
-			
-			for(int i = 0; i < list.size(); i++ ) {
-				logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));
-
-				logger.debug("ID : {}",  list.get(i).getId());
-				logger.debug("TITLE : {}",  list.get(i).getTitle());
-				logger.debug("LINK : {}",  list.get(i).getLink());
-				logger.debug("IMG : {}",  list.get(i).getImg());
-				logger.debug("CONTENT : {}",  list.get(i).getContent());
-			}
-			
-		}catch(Exception e) {
-			logger.error(e.toString());
-			e.printStackTrace();
-		}
-		*/
-		
-		
 		
 	}
 	

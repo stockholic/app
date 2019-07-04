@@ -9,6 +9,7 @@ public class SiteLinkData {
 	private String dataTitle;
 	private String dataLink;
 	private String dataImg;
+	private String contentLink;
 	private String dataContent;
 	
 	public String getDataSrl() {
@@ -52,6 +53,12 @@ public class SiteLinkData {
 	}
 	public void setDataImg(String dataImg) {
 		this.dataImg = dataImg;
+	}
+	public String getContentLink() {
+		return contentLink;
+	}
+	public void setContentLink(String contentLink) {
+		this.contentLink = contentLink;
 	}
 	public String getDataContent() {
 		return dataContent;
