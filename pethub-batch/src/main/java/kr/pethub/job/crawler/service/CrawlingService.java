@@ -23,7 +23,7 @@ public class CrawlingService {
 	/**
 	 * Reflction 을 이용하여 Class 호출 실행
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	public void crawling() {
 		
 		//사이트 Crawling 대상 URL
@@ -39,8 +39,8 @@ public class CrawlingService {
 				Class<?> clasz = Class.forName(lst.getLinkClass());
 				Object obj = clasz.newInstance();
 				
-				Method method = clasz.getMethod(lst.getLinkMethod());
-				List<SiteLinkData> list =  (List<SiteLinkData>) method.invoke(obj);
+				Method getList = clasz.getMethod(lst.getLinkMethod());
+				List<SiteLinkData> list =  (List<SiteLinkData>)getList.invoke(obj);
 				
 				//추출한 데이터 저장
 				for(int i = 0; i < list.size(); i++ ) {
@@ -50,7 +50,6 @@ public class CrawlingService {
 					logger.debug("TITLE : {}",  list.get(i).getDataTitle());
 					logger.debug("LINK : {}",  list.get(i).getDataLink());
 					logger.debug("IMG : {}",  list.get(i).getDataImg());
-//					logger.debug("CONTENT : {}",  list.get(i).getDataContent());
 					
 					SiteLinkData siteLinkData = new SiteLinkData();
 					siteLinkData.setSiteSrl(lst.getSiteSrl());
@@ -60,14 +59,14 @@ public class CrawlingService {
 					siteLinkData.setDataLink(list.get(i).getDataLink());
 					siteLinkData.setDataImg(list.get(i).getDataImg());
 					
-					
-					siteLinkData.setDataContent(list.get(i).getDataContent());
-					
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
-						Method content = clasz.getMethod("getContent", SiteLinkData.class);
-						content.invoke(obj, siteLinkData);
+						Method getContent = clasz.getMethod("getContent", SiteLinkData.class);
+						String content = (String)getContent.invoke(obj, siteLinkData);
+						
+						logger.debug("CONTENT : {}",  content);
+						siteLinkData.setDataContent(content);
 						
 						crawlingDao.insertSiteLinkData(siteLinkData);
 					}
