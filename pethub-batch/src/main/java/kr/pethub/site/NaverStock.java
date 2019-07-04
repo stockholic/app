@@ -11,16 +11,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.pethub.core.utils.JsoupUtil;
-import kr.pethub.job.crawler.vo.SiteData;
+import kr.pethub.job.crawler.vo.SiteLinkData;
 
 public class NaverStock {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	public List<SiteData> crawling() {
+	public List<SiteLinkData> crawling() {
 		
-		List<SiteData> list = new ArrayList<SiteData>();
+		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
 		String url = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		String selector = "#searchResult li";
@@ -33,27 +33,28 @@ public class NaverStock {
 			Elements elements = JsoupUtil.getElements(url, selector);
 			
 			for( Element ele :  elements) {
-				SiteData cli  = new SiteData();
+				SiteLinkData cli  = new SiteLinkData();
 				
-				cli.setTitle( ele.getElementsByClass("stock_item").text() );		//제목
+				cli.setDataTitle( ele.getElementsByClass("stock_item").text() );		//제목
 				
 				String link = ele.getElementsByTag("a").attr("href").trim();	//링크
-				cli.setLink( link );															
+				cli.setDataLink( link );															
 				
 				//아이디 추출
 				String id = link.replaceAll(patternId, "$3");
-				cli.setId( id );
+				cli.setDataId( id );
 				
 				//내용 추출	
 				Elements contents = JsoupUtil.getElements("https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=" + id, ".total_lst" );
 				
-				cli.setContent( contents.text() );
+				cli.setDataContent( contents.text() );
 				
 				list.add(cli);
 			}
 	
 	
 		} catch (Exception e) {
+			logger.error(e.toString());
 			e.printStackTrace();
 		}
 
