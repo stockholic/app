@@ -89,6 +89,21 @@ public class RegEx {
 	}
 	
 	@Test
+	public void URL_패턴4() {
+		
+		logger.debug("-------------------------------------------------------------------------------> start");
+		
+		String str = "https://m.stock.naver.com/item/index.nhn?code=140410".trim();
+		
+		String patternId ="(.*)(code=)([0-9]+)";
+		//isRegexElement(patternId, surfix);
+		String id = str.replaceAll(patternId, "$3");
+		logger.debug("id : {}  ",  id);
+		
+		logger.debug("-------------------------------------------------------------------------------> end");
+	}
+	
+	@Test
 	public void 이미지추출() {
 		
 		logger.debug("-------------------------------------------------------------------------------> start");
