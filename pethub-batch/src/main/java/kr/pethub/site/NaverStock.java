@@ -24,7 +24,6 @@ public class NaverStock {
 	/**
 	 * 대상 목록 추출
 	 * @return
-	 * @throws IOException 
 	 */
 	public List<SiteLinkData> getList(String linkUrl) throws IOException {
 		
