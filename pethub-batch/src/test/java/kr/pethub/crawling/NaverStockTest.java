@@ -1,8 +1,5 @@
 package kr.pethub.crawling;
 
-import java.util.List;
-
-
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,36 +17,30 @@ public class NaverStockTest extends BaseTestCase{
 	@Autowired
 	private CrawlingService  service;
 	
+	NaverStock obj = new NaverStock();
+	
 	@Test
-	public void crawling(){
+	public void 목록추출(){
 		
-		NaverStock ns = new NaverStock();
-		List<SiteLinkData> list =   ns.getList();
+		String linkUrl = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		
-		for(int i = 0; i < list.size(); i++ ) {
-			logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));
-
-			logger.debug("ID : {}",  list.get(i).getDataId());
-			logger.debug("TITLE : {}",  list.get(i).getDataTitle());
-			logger.debug("LINK : {}",  list.get(i).getDataLink());
-			logger.debug("IMAGE : {}",  list.get(i).getDataImg());
-			
-			SiteLinkData siteLinkData = new SiteLinkData();
-			siteLinkData.setDataId(list.get(i).getDataId());
-			siteLinkData.setContentLink(list.get(i).getContentLink());
-			
-			String content = ns.getContent(siteLinkData);
-			logger.debug("CONTENT : {}",  content);
-			
-		}
+		obj.getList(linkUrl);
+		
+	}
+	
+	@Test
+	public void 내용추출(){
+		
+		SiteLinkData siteLinkData = new SiteLinkData();
+		siteLinkData.setContentLink("https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=659432");
+		
+		obj.getContent(siteLinkData);
 		
 	}
 	
 	
 	@Test
-	public void insertData(){
-		
+	public void 데이터저장(){
 		service.crawling();
-		
 	}
 }

@@ -1,5 +1,6 @@
 package kr.pethub.site;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +20,15 @@ public class DogmaruCoKr {
 	/**
 	 * 대상 목록 추출
 	 * @return
+	 * @throws IOException 
 	 */
 	
-	public List<SiteLinkData> getList(String linkUrl) {
+	public List<SiteLinkData> getList(String linkUrl) throws IOException {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
 		String selector = "#post_card_b201807025b39d19969307 .ma-item";
-		String prifix = "https://dogmaru.co.kr";
+		String domain = "https://dogmaru.co.kr";
 		String patternImg = "(background-image: url)\\(([^\\s]+)\\)(.*)";
 		String patternId ="(.*)(idx=)([0-9]+)(.*)";
 
@@ -46,8 +48,8 @@ public class DogmaruCoKr {
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
-			logger.debug( "LINK : {} " , prifix + dataLink );
-			cli.setDataLink(prifix + dataLink);
+			logger.debug( "LINK : {} " , domain + dataLink );
+			cli.setDataLink(domain + dataLink);
 			
 			//이미지 추출
 			String dataImg = ele.select(".card_wrapper").attr("style");
@@ -76,8 +78,9 @@ public class DogmaruCoKr {
 	/**
 	 * 내용 추출
 	 * @return
+	 * @throws IOException 
 	 */
-	public String getContent( SiteLinkData siteLinkData ) {
+	public String getContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "#w201901175c3fe684e2c7c .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getContentLink() , selector );

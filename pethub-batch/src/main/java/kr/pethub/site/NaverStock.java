@@ -1,5 +1,6 @@
 package kr.pethub.site;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,23 +24,25 @@ public class NaverStock {
 	/**
 	 * 대상 목록 추출
 	 * @return
+	 * @throws IOException 
 	 */
-	public List<SiteLinkData> getList() {
+	public List<SiteLinkData> getList(String linkUrl) throws IOException {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
-		String url = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		String selector = "#searchResult li";
 		String patternId ="(.*)(code=)([0-9]+)";
 
 		String contentUrl = "https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=";
 		
-		Elements elements = JsoupUtil.getElements(url, selector);
+		Elements elements = JsoupUtil.getElements(linkUrl, selector);
 		
 		for( Element ele :  elements) {
 			SiteLinkData cli  = new SiteLinkData();
 			
+			String dataTitle = ele.getElementsByClass("stock_item").text();
 			cli.setDataTitle( ele.getElementsByClass("stock_item").text() );		//제목
+			logger.debug( "TITEL : {} " , dataTitle );
 			
 			String link = ele.getElementsByTag("a").attr("href").trim();			//링크
 			cli.setDataLink( link );
@@ -59,11 +62,14 @@ public class NaverStock {
 	/**
 	 * 내용 추출
 	 * @return
+	 * @throws IOException 
 	 */
-	public String getContent( SiteLinkData siteLinkData ) {
+	public String getContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = ".total_lst";
-		Elements contents = JsoupUtil.getElements(siteLinkData.getContentLink() + siteLinkData.getDataId() , selector );
+		Elements contents = JsoupUtil.getElements(siteLinkData.getContentLink(), selector );
+		
+		logger.debug( "CONTENTS : {} " , contents.text() );
 		
 		return contents.text();
 	}

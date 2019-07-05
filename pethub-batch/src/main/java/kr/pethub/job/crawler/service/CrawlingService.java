@@ -75,6 +75,8 @@ public class CrawlingService {
 				
 			}catch(Exception e) {
 				e.printStackTrace();
+			}finally {
+				
 			}
 			
 			
