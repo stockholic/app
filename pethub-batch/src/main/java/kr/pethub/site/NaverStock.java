@@ -41,7 +41,7 @@ public class NaverStock {
 			
 			cli.setDataTitle( ele.getElementsByClass("stock_item").text() );		//제목
 			
-			String link = ele.getElementsByTag("a").attr("href").trim();	//링크
+			String link = ele.getElementsByTag("a").attr("href").trim();			//링크
 			cli.setDataLink( link );
 			cli.setContentLink( contentUrl );
 			

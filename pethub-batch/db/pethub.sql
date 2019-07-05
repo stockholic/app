@@ -17,6 +17,7 @@ CREATE TABLE `site_link` (
   `link_url` varchar(100) DEFAULT NULL COMMENT '링크 url',
   `link_class` text  COMMENT '실행클래스',
   `link_method` text  COMMENT '실행메소드',
+  `use_yn` char(1) DEFAULT 'Y' COMMENT '사용여부',
   `reg_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
   `upt_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일',
   PRIMARY KEY (`link_srl`),

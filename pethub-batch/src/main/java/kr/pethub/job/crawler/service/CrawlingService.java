@@ -44,12 +44,6 @@ public class CrawlingService {
 				
 				//추출한 데이터 저장
 				for(int i = 0; i < list.size(); i++ ) {
-					logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));
-
-					logger.debug("ID : {}",  list.get(i).getDataId());
-					logger.debug("TITLE : {}",  list.get(i).getDataTitle());
-					logger.debug("LINK : {}",  list.get(i).getDataLink());
-					logger.debug("IMG : {}",  list.get(i).getDataImg());
 					
 					SiteLinkData siteLinkData = new SiteLinkData();
 					siteLinkData.setSiteSrl(lst.getSiteSrl());
@@ -58,6 +52,8 @@ public class CrawlingService {
 					siteLinkData.setDataTitle(list.get(i).getDataTitle());
 					siteLinkData.setDataLink(list.get(i).getDataLink());
 					siteLinkData.setDataImg(list.get(i).getDataImg());
+					
+					siteLinkData.setContentLink(list.get(i).getContentLink());
 					
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){

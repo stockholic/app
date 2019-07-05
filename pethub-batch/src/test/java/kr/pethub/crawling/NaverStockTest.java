@@ -23,8 +23,8 @@ public class NaverStockTest extends BaseTestCase{
 	@Test
 	public void crawling(){
 		
-		NaverStock tc = new NaverStock();
-		List<SiteLinkData> list =   tc.getList();
+		NaverStock ns = new NaverStock();
+		List<SiteLinkData> list =   ns.getList();
 		
 		for(int i = 0; i < list.size(); i++ ) {
 			logger.debug("--------------------------------------------------------------------------------------------------------------- " + (i + 1));
@@ -33,7 +33,14 @@ public class NaverStockTest extends BaseTestCase{
 			logger.debug("TITLE : {}",  list.get(i).getDataTitle());
 			logger.debug("LINK : {}",  list.get(i).getDataLink());
 			logger.debug("IMAGE : {}",  list.get(i).getDataImg());
-			logger.debug("CONTENT : {}",  list.get(i).getDataContent());
+			
+			SiteLinkData siteLinkData = new SiteLinkData();
+			siteLinkData.setDataId(list.get(i).getDataId());
+			siteLinkData.setContentLink(list.get(i).getContentLink());
+			
+			String content = ns.getContent(siteLinkData);
+			logger.debug("CONTENT : {}",  content);
+			
 		}
 		
 	}
