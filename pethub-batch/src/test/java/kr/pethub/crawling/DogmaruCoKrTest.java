@@ -21,7 +21,10 @@ public class DogmaruCoKrTest extends BaseTestCase{
 	
 	@Test
 	public void 목록추출(){
-		obj.getList();
+		
+		String linkUrl = "https://dogmaru.co.kr/sdog";
+		
+		obj.getList(linkUrl);
 	}
 	
 	@Test

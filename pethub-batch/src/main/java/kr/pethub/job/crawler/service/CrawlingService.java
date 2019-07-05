@@ -3,6 +3,7 @@ package kr.pethub.job.crawler.service;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +32,17 @@ public class CrawlingService {
 		
 		for( SiteLink lst : linkList ) {
 			
-			
 			logger.info(lst.getLinkNm());
 			
 			try {
 				
+				//Class 생성
 				Class<?> clasz = Class.forName(lst.getLinkClass());
 				Object obj = clasz.newInstance();
 				
-				Method getList = clasz.getMethod(lst.getLinkMethod());
-				List<SiteLinkData> list =  (List<SiteLinkData>)getList.invoke(obj);
+				//Method 호출
+				Method getList = clasz.getMethod(lst.getLinkMethod(), String.class);
+				List<SiteLinkData> list =  (List<SiteLinkData>)getList.invoke(obj, lst.getLinkUrl());
 				
 				//추출한 데이터 저장
 				for(int i = 0; i < list.size(); i++ ) {
@@ -58,11 +60,13 @@ public class CrawlingService {
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
-						Method getContent = clasz.getMethod("getContent", SiteLinkData.class);
-						String content = (String)getContent.invoke(obj, siteLinkData);
-						
-						logger.debug("CONTENT : {}",  content);
-						siteLinkData.setDataContent(content);
+						if( StringUtils.isNotEmpty(siteLinkData.getContentLink())) {
+							Method getContent = clasz.getMethod("getContent", SiteLinkData.class);
+							String content = (String)getContent.invoke(obj, siteLinkData);
+							
+							logger.debug("CONTENT : {}",  content);
+							siteLinkData.setDataContent(content);
+						}
 						
 						crawlingDao.insertSiteLinkData(siteLinkData);
 					}

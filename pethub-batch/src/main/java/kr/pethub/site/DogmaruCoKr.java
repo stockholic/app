@@ -3,14 +3,10 @@ package kr.pethub.site;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.ctc.wstx.sw.EncodingXmlWriter;
 
 import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.vo.SiteLinkData;
@@ -24,18 +20,17 @@ public class DogmaruCoKr {
 	 * 대상 목록 추출
 	 * @return
 	 */
-	public List<SiteLinkData> getList() {
+	
+	public List<SiteLinkData> getList(String linkUrl) {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
-		String url = "https://dogmaru.co.kr/sdog";
 		String selector = "#post_card_b201807025b39d19969307 .ma-item";
-		
 		String prifix = "https://dogmaru.co.kr";
 		String patternImg = "(background-image: url)\\(([^\\s]+)\\)(.*)";
 		String patternId ="(.*)(idx=)([0-9]+)(.*)";
 
-		Elements elements = JsoupUtil.getElements(url, selector);
+		Elements elements = JsoupUtil.getElements(linkUrl, selector);
 		
 		int k = 1;
 		for( Element ele :  elements) {
@@ -64,6 +59,11 @@ public class DogmaruCoKr {
 			String dataId = dataLink.replaceAll(patternId, "$3");
 			logger.debug( "ID : {} " , dataId );
 			cli.setDataId( dataId );
+			
+			
+			//내용 접근 URL
+			cli.setContentLink(cli.getDataLink());	
+			
 			
 			list.add(cli);
 			

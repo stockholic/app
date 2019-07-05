@@ -14,6 +14,7 @@
 		  	, sl.link_method
 		FROM site_info si, site_link sl
 		WHERE si.site_srl = sl.link_srl
+		AND sl.use_yn = 'Y'
 	</select>
 
 	<select id="selectSiteLinkDataList" resultType="kr.pethub.job.crawler.vo.SiteLinkData">

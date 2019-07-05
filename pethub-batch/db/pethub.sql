@@ -50,3 +50,13 @@ CREATE TABLE `site_link_error_log` (
   PRIMARY KEY (`log_srl`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='사이트에러로그';
 ;
+
+
+insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (1,'네이버 주식','m.stock.naver.com','테스트','2019-07-04 00:00:00','2019-07-04 00:00:00');
+insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (2,'도그마루','dogmaru.co.kr','강아지, 고양이 분양','2019-07-05 00:00:00','2019-07-05 00:00:00');
+
+insert into `site_link`(`link_srl`,`site_srl`,`link_nm`,`link_url`,`link_class`,`link_method`,`use_yn`,`reg_dt`,`upt_dt`) values (1,1,'네이버 종목 시세','https://m.stock.naver.com/searchItem.nhn?searchType=init','kr.pethub.site.NaverStock','getList','N','2019-07-04 00:00:00','2019-07-04 00:00:00');
+insert into `site_link`(`link_srl`,`site_srl`,`link_nm`,`link_url`,`link_class`,`link_method`,`use_yn`,`reg_dt`,`upt_dt`) values (2,2,'강아지 분양','https://dogmaru.co.kr/sdog','kr.pethub.site.DogmaruCoKr','getList','Y','2019-07-05 00:00:00','2019-07-05 00:00:00');
+
+
+
