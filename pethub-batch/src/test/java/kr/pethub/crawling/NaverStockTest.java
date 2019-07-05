@@ -1,5 +1,7 @@
 package kr.pethub.crawling;
 
+import java.io.IOException;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,7 @@ public class NaverStockTest extends BaseTestCase{
 	NaverStock obj = new NaverStock();
 	
 	@Test
-	public void 목록추출(){
+	public void 목록추출() throws IOException{
 		
 		String linkUrl = "https://m.stock.naver.com/searchItem.nhn?searchType=init";
 		
@@ -29,7 +31,7 @@ public class NaverStockTest extends BaseTestCase{
 	}
 	
 	@Test
-	public void 내용추출(){
+	public void 내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
 		siteLinkData.setContentLink("https://m.stock.naver.com/api/html/item/getOverallInfo.nhn?code=659432");
