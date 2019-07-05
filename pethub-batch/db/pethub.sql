@@ -46,6 +46,7 @@ CREATE TABLE `site_link_log` (
   `log_srl` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
   `site_srl` int(10) unsigned COMMENT 'site_info 참조번호',
   `link_srl` int(10) unsigned COMMENT 'site_link 참조번호',
+  `link_count` int(10) unsigned COMMENT '목록 수',
   `log_code` varchar(10) DEFAULT NULL COMMENT '에러제목',
   `log_message` text COMMENT '에러내용',
   `reg_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',

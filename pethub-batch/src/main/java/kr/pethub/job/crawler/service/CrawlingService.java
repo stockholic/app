@@ -73,10 +73,13 @@ public class CrawlingService {
 					
 				}
 				
+				//결과 로그저장(성공)
+				
 			}catch(Exception e) {
+				//결과 로그저장(에러)
 				e.printStackTrace();
 			}finally {
-				
+				//최종 리스트 수 업데이트
 			}
 			
 			
