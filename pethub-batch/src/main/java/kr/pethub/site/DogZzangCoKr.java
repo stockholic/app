@@ -1,6 +1,11 @@
 package kr.pethub.site;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +18,12 @@ import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 
 /**
- * 주세요닷컴 http://www.zooseyo.com
+ * 도그짱 http://www.dog-zzang.co.kr 
  * @author shkr
  *
  */
 
-public class ZooseyoCom {
+public class DogZzangCoKr {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -33,13 +38,46 @@ public class ZooseyoCom {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
-		String selector = "body > table:nth-child(6) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr > td > table";
-		String domain = "http://www.zooseyo.com";
+		String selector = "body > table > tbody > tr > td > table:nth-child(6) > tbody > tr > td:nth-child(2) > table:nth-child(2) > tbody > tr > td > table";
+		String domain = "http://www.dog-zzang.co.kr";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl, selector);
+		
+		//System.out.println(elements.html());
+		
 		int k = 1;
 		
+		
+		String originalStr = "����Ǫ��"; // 테스트 
+		String [] charSet = {"utf-8","euc-kr","ksc5601","iso-8859-1","x-windows-949"};
+		  
+		for (int i=0; i<charSet.length; i++) {
+		 for (int j=0; j<charSet.length; j++) {
+		  try {
+		   System.out.println("[" + charSet[i] +"," + charSet[j] +"] = " + new String(originalStr.getBytes(charSet[i]), charSet[j]));
+		  } catch (UnsupportedEncodingException e) {
+		   e.printStackTrace();
+		  }
+		 }
+		}
+
+
+		
+		for( Element ele :  elements) {
+			if( ele.getElementsByTag("tr").hasAttr("onmouseover")  ) {
+				
+			//	String res = new String(super.handleResponse(response).getBytes("8859_1"), "euc-kr");
+				
+				String gg = ele.getElementsByTag("td").get(2).html();
+				String decoded_result = new String(gg.getBytes("utf-8"), "CP1251");
+
+				
+				System.out.println( gg  );
+				
+			}
+		}
+		/*
 		for( Element ele :  elements) {
 			
 			if( ele.getElementsByTag("tr").hasAttr("onclick")  ) {
@@ -77,6 +115,7 @@ public class ZooseyoCom {
 			}
 			
 		}
+		*/
 		
 
 		return list;
