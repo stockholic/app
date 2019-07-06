@@ -12,8 +12,8 @@ import kr.pethub.job.crawler.service.CrawlingService;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.site.DogmaruCoKr;
 
-//public class DogmaruCoKrTest extends BaseTestCase{
-public class DogmaruCoKrTest {
+public class DogmaruCoKrTest extends BaseTestCase{
+//public class DogmaruCoKrTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	 
@@ -25,16 +25,16 @@ public class DogmaruCoKrTest {
 	@Test
 	public void 목록추출() throws IOException{
 		
-		String linkUrl = "https://dogmaru.co.kr/sdaog";
+		String linkUrl = "https://dogmaru.co.kr/sdog";
 		
-		obj.getList(linkUrl);
+		obj.getDogList(linkUrl);
 	}
 	
 	@Test
 	public void 내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setContentLink("https://dogmaru.co.kr/sdog/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=1659432&t=board");
+		siteLinkData.setDataLink("https://dogmaru.co.kr/sdog/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=1659432&t=board");
 		
 		obj.getContent(siteLinkData);
 		

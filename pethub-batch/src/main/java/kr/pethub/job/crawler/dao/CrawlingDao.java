@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import kr.pethub.core.module.MultiSqlSessionDaoSupport;
 import kr.pethub.job.crawler.vo.SiteLink;
 import kr.pethub.job.crawler.vo.SiteLinkData;
+import kr.pethub.job.crawler.vo.SiteLinkLog;
 
 @Repository
 public class CrawlingDao extends MultiSqlSessionDaoSupport{
@@ -63,6 +64,24 @@ public class CrawlingDao extends MultiSqlSessionDaoSupport{
 	 */
 	public int insertSiteLinkErrorLog(Map<String,String> map) {
 		return insert("insertSiteLinkErrorLog", map);
+	}
+	
+	/**
+	 * 사이트 리크수 업데이트
+	 * @param siteLink
+	 * @return
+	 */
+	public int updateSiteLinkCnt(SiteLink siteLink) {
+		return update("updateSiteLinkCnt", siteLink);
+	}
+	
+	/**
+	 * 사이트 로그 등록
+	 * @param siteLinkLog
+	 * @return
+	 */
+	public int insertSiteLinkLog(SiteLinkLog siteLinkLog) {
+		return insert("insertSiteLinkLog", siteLinkLog);
 	}
 	
 }

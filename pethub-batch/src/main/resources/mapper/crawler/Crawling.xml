@@ -10,8 +10,8 @@
       		, sl.link_srl
 		  	, sl.link_nm
 		  	, sl.link_url
-		  	, sl.link_class
-		  	, sl.link_method
+		  	, sl.link_cls
+		  	, sl.link_mtd
 		FROM site_info si, site_link sl
 		WHERE si.site_srl = sl.link_srl
 		AND sl.use_yn = 'Y'
@@ -61,7 +61,7 @@
 			, data_img = #{dataImg}
 			, upt_dt = SYSDATE()
 		WHERE 	site_srl = #{siteSrl}
-		AND site_srl = #{linkSrl}
+		AND link_srl = #{linkSrl}
 		AND data_id = #{dataId}
 	</update>
 	
@@ -70,14 +70,28 @@
 	</delete>
 	
 	
-	<insert id="insertSiteLinkErrorLog">
-		INSERT INTO site_link_error_log(
-			  log_title
-			, log_message
+	<update id="updateSiteLinkCnt">
+		UPDATE site_link SET
+			 link_cnt = #{linkCnt}
+			, exc_dt = SYSDATE()
+		WHERE link_srl = #{linkSrl}
+	</update>
+	
+	
+	<insert id="insertSiteLinkLog">
+		INSERT INTO site_link_log(
+			 site_srl
+			, link_srl
+			, link_cnt
+			, log_cd
+			, log_msg
 			, reg_dt
 		) VALUES (
-			 #{LOG_TITLE}
-			, #{LOG_MESSAGE}
+			 #{siteSrl}
+			, #{linkSrl}
+			, #{linkCnt}
+			, #{logCd}
+			, #{logMsg}
 			, SYSDATE()
 		)
 	</insert>

@@ -1,5 +1,7 @@
 package kr.pethub.job.crawler.service;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import kr.pethub.job.crawler.dao.CrawlingDao;
 import kr.pethub.job.crawler.vo.SiteLinkData;
+import kr.pethub.job.crawler.vo.SiteLinkLog;
 import kr.pethub.job.crawler.vo.SiteLink;
 
 @Service
@@ -31,17 +34,20 @@ public class CrawlingService {
 		List<SiteLink> linkList = crawlingDao.selectSiteLinkList();
 		
 		for( SiteLink lst : linkList ) {
-			
+
 			logger.info(lst.getLinkNm());
+			
+			int linkCnt = 0;
+			SiteLinkLog siteLinkLog = new SiteLinkLog();
 			
 			try {
 				
 				//Class 생성
-				Class<?> clasz = Class.forName(lst.getLinkClass());
+				Class<?> clasz = Class.forName(lst.getLinkCls());
 				Object obj = clasz.newInstance();
 				
 				//Method 호출
-				Method getList = clasz.getMethod(lst.getLinkMethod(), String.class);
+				Method getList = clasz.getMethod(lst.getLinkMtd(), String.class);
 				List<SiteLinkData> list =  (List<SiteLinkData>)getList.invoke(obj, lst.getLinkUrl());
 				
 				//추출한 데이터 저장
@@ -55,12 +61,12 @@ public class CrawlingService {
 					siteLinkData.setDataLink(list.get(i).getDataLink());
 					siteLinkData.setDataImg(list.get(i).getDataImg());
 					
-					siteLinkData.setContentLink(list.get(i).getContentLink());
+					siteLinkData.setDataLink((list.get(i).getDataLink()));
 					
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
-						if( StringUtils.isNotEmpty(siteLinkData.getContentLink())) {
+						if( StringUtils.isNotEmpty(siteLinkData.getDataLink())) {
 							Method getContent = clasz.getMethod("getContent", SiteLinkData.class);
 							String content = (String)getContent.invoke(obj, siteLinkData);
 							
@@ -71,15 +77,38 @@ public class CrawlingService {
 						crawlingDao.insertSiteLinkData(siteLinkData);
 					}
 					
+					linkCnt++;
+					
 				}
 				
 				//결과 로그저장(성공)
+				siteLinkLog.setSiteSrl(lst.getSiteSrl());
+				siteLinkLog.setLinkSrl(lst.getLinkSrl());
+				siteLinkLog.setLogCd("200");
+				siteLinkLog.setLinkCnt(linkCnt);
+				crawlingDao.insertSiteLinkLog(siteLinkLog);
 				
 			}catch(Exception e) {
 				//결과 로그저장(에러)
+				StringWriter sw = new StringWriter();
+				e.printStackTrace(new PrintWriter(sw));
+				String exceptionAsString = sw.toString();
+				
+				siteLinkLog.setSiteSrl(lst.getSiteSrl());
+				siteLinkLog.setLinkSrl(lst.getLinkSrl());
+				siteLinkLog.setLogCd("500");
+				siteLinkLog.setLogMsg(exceptionAsString);
+				siteLinkLog.setLinkCnt(linkCnt);
+				crawlingDao.insertSiteLinkLog(siteLinkLog);
+				
 				e.printStackTrace();
 			}finally {
-				//최종 리스트 수 업데이트
+				
+				//최종 리스트 수, 실행일 업데이트
+				SiteLink siteLink = new SiteLink();
+				siteLink.setLinkCnt(linkCnt);
+				siteLink.setLinkSrl(lst.getLinkSrl());
+				crawlingDao.updateSiteLinkCnt(siteLink);
 			}
 			
 			

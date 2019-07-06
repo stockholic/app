@@ -18,12 +18,12 @@ public class DogmaruCoKr {
 	
 	
 	/**
-	 * 대상 목록 추출
+	 * 강이지 목록 추출
 	 * @return
 	 * @throws IOException 
 	 */
 	
-	public List<SiteLinkData> getList(String linkUrl) throws IOException {
+	public List<SiteLinkData> getDogList(String linkUrl) throws IOException {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
@@ -62,10 +62,8 @@ public class DogmaruCoKr {
 			logger.debug( "ID : {} " , dataId );
 			cli.setDataId( dataId );
 			
-			
 			//내용 접근 URL
-			cli.setContentLink(cli.getDataLink());	
-			
+			cli.setDataLink(cli.getDataLink());	
 			
 			list.add(cli);
 			
@@ -83,7 +81,7 @@ public class DogmaruCoKr {
 	public String getContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "#w201901175c3fe684e2c7c .tableStrong";
-		Elements contents = JsoupUtil.getElements(siteLinkData.getContentLink() , selector );
+		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
 		logger.debug( "CONTENTS : {} " , contents.text() );
 		
