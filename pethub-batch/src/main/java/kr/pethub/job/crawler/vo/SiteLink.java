@@ -2,13 +2,14 @@ package kr.pethub.job.crawler.vo;
 
 public class SiteLink {
 	
-	private String linkSrl;
-	private String siteSrl;
-	private String siteNm;
-	private String linkNm;
-	private String linkUrl;
-	private String linkClass;
-	private String linkMethod;
+	private String linkSrl;				// 링크 일련번호
+	private String siteSrl;					// 사이트 일련번호
+	private String siteNm;				// 사이트명 
+	private String linkNm;				// 링크명
+	private String linkUrl;				// 링크 URL
+	private String linkCls;				// 실행 클래스
+	private String linkMtd;				// 실행 메소드
+	private int linkCnt;					// 링크수 
 	
 	public String getLinkSrl() {
 		return linkSrl;
@@ -40,17 +41,23 @@ public class SiteLink {
 	public void setLinkUrl(String linkUrl) {
 		this.linkUrl = linkUrl;
 	}
-	public String getLinkClass() {
-		return linkClass;
+	public String getLinkCls() {
+		return linkCls;
 	}
-	public void setLinkClass(String linkClass) {
-		this.linkClass = linkClass;
+	public void setLinkCls(String linkCls) {
+		this.linkCls = linkCls;
 	}
-	public String getLinkMethod() {
-		return linkMethod;
+	public String getLinkMtd() {
+		return linkMtd;
 	}
-	public void setLinkMethod(String linkMethod) {
-		this.linkMethod = linkMethod;
+	public void setLinkMtd(String linkMtd) {
+		this.linkMtd = linkMtd;
+	}
+	public int getLinkCnt() {
+		return linkCnt;
+	}
+	public void setLinkCnt(int linkCnt) {
+		this.linkCnt = linkCnt;
 	}
 	
 }

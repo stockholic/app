@@ -2,15 +2,14 @@ package kr.pethub.job.crawler.vo;
 
 public class SiteLinkData {
 	
-	private String dataSrl;
-	private String siteSrl;
-	private String linkSrl;
-	private String dataId;
-	private String dataTitle;
-	private String dataLink;
-	private String dataImg;
-	private String contentLink;
-	private String dataContent;
+	private String dataSrl;				// 데이터 일련번호
+	private String siteSrl;					// 사이트 일련번호
+	private String linkSrl;				// 링크 일련번호
+	private String dataId;				// 데이터  아이디
+	private String dataTitle;				// 데이터 제목
+	private String dataLink;				// 데이터 링크
+	private String dataImg;				// 데이터 이미지
+	private String dataContent;		// 데이터  내용
 	
 	public String getDataSrl() {
 		return dataSrl;
@@ -53,12 +52,6 @@ public class SiteLinkData {
 	}
 	public void setDataImg(String dataImg) {
 		this.dataImg = dataImg;
-	}
-	public String getContentLink() {
-		return contentLink;
-	}
-	public void setContentLink(String contentLink) {
-		this.contentLink = contentLink;
 	}
 	public String getDataContent() {
 		return dataContent;
