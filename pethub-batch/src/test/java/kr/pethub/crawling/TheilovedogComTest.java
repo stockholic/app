@@ -39,7 +39,7 @@ public class TheilovedogComTest extends BaseTestCase{
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.theilovedog.com/dog/view.php?category=1&id=626 ");
+		siteLinkData.setDataLink("http://www.theilovedog.com/dog/view.php?category=1&id=626");
 		
 		obj.getDogContent(siteLinkData);
 		

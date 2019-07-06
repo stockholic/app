@@ -48,22 +48,22 @@ public class TheilovedogCom {
 			
 			//제목 추출
 			String dataTitle = ele.getElementsByClass("dog_sbj").text();
-			logger.debug( "TITEL : {} " , dataTitle );
+			logger.debug( "TITEL : {}" , dataTitle );
 			cli.setDataTitle( dataTitle) ;
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
-			logger.debug( "LINK : {} " , domain + dataLink );
+			logger.debug( "LINK : {}" , domain + dataLink );
 			cli.setDataLink(domain + dataLink);
 			
 			//이미지 추출
 			String dataImg = ele.getElementsByTag("img").attr("src");
-			logger.debug( "IMAGE : {} " , domain + dataImg );
+			logger.debug( "IMAGE : {}" , domain + dataImg );
 			cli.setDataImg(domain + dataImg);	
 			
 			//아이디 추출
 			String dataId = dataLink.replaceAll(patternId, "$3");
-			logger.debug( "ID : {} " , dataId );
+			logger.debug( "ID : {}" , dataId );
 			cli.setDataId( dataId );
 			
 			//내용 접근 URL
@@ -87,7 +87,7 @@ public class TheilovedogCom {
 		String selector = ".dog_info_wrap";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {} " , contents.text() );
+		logger.debug( "CONTENTS : {}" , contents.text() );
 		
 		return contents.text();
 	}

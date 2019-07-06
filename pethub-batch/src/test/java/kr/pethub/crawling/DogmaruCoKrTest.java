@@ -55,7 +55,7 @@ public class DogmaruCoKrTest extends BaseTestCase{
 	public void 고양이_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("https://dogmaru.co.kr/cat/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=1806822&t=board ");
+		siteLinkData.setDataLink("https://dogmaru.co.kr/cat/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=1806822&t=board");
 		
 		obj.getCatContent(siteLinkData);
 		

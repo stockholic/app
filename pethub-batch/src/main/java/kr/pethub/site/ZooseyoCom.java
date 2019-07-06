@@ -37,7 +37,7 @@ public class ZooseyoCom {
 		String domain = "http://www.zooseyo.com";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 
-		Elements elements = JsoupUtil.getElements(linkUrl, selector);
+		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr", selector);
 		int k = 1;
 		
 		for( Element ele :  elements) {
@@ -50,22 +50,22 @@ public class ZooseyoCom {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {} " , dataTitle );
+				logger.debug( "TITEL : {}" , dataTitle );
 				cli.setDataTitle( dataTitle) ;
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
-				logger.debug( "LINK : {} " , dataLink );
+				logger.debug( "LINK : {}" , dataLink );
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
 				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {} " , dataImg );
+				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
 				//아이디 추출
 				String dataId = dataLink.replaceAll(patternId, "$3");
-				logger.debug( "ID : {} " , dataId );
+				logger.debug( "ID : {}" , dataId );
 				cli.setDataId( dataId );
 				
 				//내용 접근 URL
@@ -89,10 +89,10 @@ public class ZooseyoCom {
 	 */
 	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
-		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td:nth-child(2) > table";
-		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
+		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td";
+		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , "euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {} " , contents.text() );
+		logger.debug( "CONTENTS : {}" , contents.text() );
 		
 		return contents.text();
 	}
@@ -110,7 +110,7 @@ public class ZooseyoCom {
 		String selector = "body > table:nth-child(6) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr > td > table";
 		String domain = "http://www.zooseyo.com";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
-		Elements elements = JsoupUtil.getElements(linkUrl, selector);
+		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr", selector);
 		int k = 1;
 		
 		for( Element ele :  elements) {
@@ -123,22 +123,22 @@ public class ZooseyoCom {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {} " , dataTitle );
+				logger.debug( "TITEL : {}" , dataTitle );
 				cli.setDataTitle( dataTitle) ;
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
-				logger.debug( "LINK : {} " , dataLink );
+				logger.debug( "LINK : {}" , dataLink );
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
 				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {} " , dataImg );
+				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
 				//아이디 추출
 				String dataId = dataLink.replaceAll(patternId, "$3");
-				logger.debug( "ID : {} " , dataId );
+				logger.debug( "ID : {}" , dataId );
 				cli.setDataId( dataId );
 				
 				//내용 접근 URL
@@ -153,6 +153,21 @@ public class ZooseyoCom {
 		
 
 		return list;
+	}
+	
+	/**
+	 * 고양이 내용 추출
+	 * @return
+	 * @throws IOException 
+	 */
+	public String getCatContent( SiteLinkData siteLinkData ) throws IOException {
+
+		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td";
+		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , "euc-kr", selector );
+		
+		logger.debug( "CONTENTS : {}" , contents.text() );
+		
+		return contents.text();
 	}
 	
 	

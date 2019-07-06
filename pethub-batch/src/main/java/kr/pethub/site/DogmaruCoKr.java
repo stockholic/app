@@ -48,23 +48,23 @@ public class DogmaruCoKr {
 			
 			//제목 추출
 			String dataTitle = ele.select(".title span").text();
-			logger.debug( "TITEL : {} " , dataTitle );
+			logger.debug( "TITEL : {}" , dataTitle );
 			cli.setDataTitle( dataTitle) ;
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
-			logger.debug( "LINK : {} " , domain + dataLink );
+			logger.debug( "LINK : {}" , domain + dataLink );
 			cli.setDataLink(domain + dataLink);
 			
 			//이미지 추출
 			String dataImg = ele.select(".card_wrapper").attr("style");
 			dataImg = dataImg.replaceAll(patternImg, "$2");
-			logger.debug( "IMAGE : {} " , dataImg );
+			logger.debug( "IMAGE : {}" , dataImg );
 			cli.setDataImg(dataImg);;	
 			
 			//아이디 추출
 			String dataId = dataLink.replaceAll(patternId, "$3");
-			logger.debug( "ID : {} " , dataId );
+			logger.debug( "ID : {}" , dataId );
 			cli.setDataId( dataId );
 			
 			//내용 접근 URL
@@ -88,7 +88,7 @@ public class DogmaruCoKr {
 		String selector = "#w201901175c3fe684e2c7c .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {} " , contents.text() );
+		logger.debug( "CONTENTS : {}" , contents.text() );
 		
 		return contents.text();
 	}
@@ -119,23 +119,23 @@ public class DogmaruCoKr {
 			
 			//제목 추출
 			String dataTitle = ele.select(".title span").text();
-			logger.debug( "TITEL : {} " , dataTitle );
+			logger.debug( "TITEL : {}" , dataTitle );
 			cli.setDataTitle( dataTitle) ;
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
-			logger.debug( "LINK : {} " , domain + dataLink );
+			logger.debug( "LINK : {}" , domain + dataLink );
 			cli.setDataLink(domain + dataLink);
 			
 			//이미지 추출
 			String dataImg = ele.select(".card_wrapper").attr("style");
 			dataImg = dataImg.replaceAll(patternImg, "$2");
-			logger.debug( "IMAGE : {} " , dataImg );
+			logger.debug( "IMAGE : {}" , dataImg );
 			cli.setDataImg(dataImg);;	
 			
 			//아이디 추출
 			String dataId = dataLink.replaceAll(patternId, "$3");
-			logger.debug( "ID : {} " , dataId );
+			logger.debug( "ID : {}" , dataId );
 			cli.setDataId( dataId );
 			
 			//내용 접근 URL
@@ -159,7 +159,7 @@ public class DogmaruCoKr {
 		String selector = "#w201901175c40056b2382a .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {} " , contents.text() );
+		logger.debug( "CONTENTS : {}" , contents.text() );
 		
 		return contents.text();
 	}

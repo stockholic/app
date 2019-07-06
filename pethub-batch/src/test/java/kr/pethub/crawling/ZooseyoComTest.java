@@ -35,14 +35,32 @@ public class ZooseyoComTest extends BaseTestCase{
 		obj.getDogList(linkUrl);
 	}
 	
-	//에러남
-	//@Test
+	@Test
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562393946424&no=277606&page=1&kind=&area=");
+		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562389717647&no=277599&page=1&kind=&area=");
 		
 		obj.getDogContent(siteLinkData);
+		
+	}
+	
+	
+	@Test
+	public void 고양이_목록추출() throws IOException{
+		
+		String linkUrl = "http://www.zooseyo.com/sale/sale_list.php?animal=cat";
+		
+		obj.getCatList(linkUrl);
+	}
+
+	@Test
+	public void 고양이_내용추출() throws IOException{
+		
+		SiteLinkData siteLinkData = new SiteLinkData();
+		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag15623238255&no=277525&page=1&kind=&area=");
+		
+		obj.getCatContent(siteLinkData);
 		
 	}
 	

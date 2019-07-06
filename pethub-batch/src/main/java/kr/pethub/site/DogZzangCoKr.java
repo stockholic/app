@@ -42,39 +42,14 @@ public class DogZzangCoKr {
 		String domain = "http://www.dog-zzang.co.kr";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 
-		Elements elements = JsoupUtil.getElements(linkUrl, selector);
+		Elements elements = JsoupUtil.getElements(linkUrl,"euc-kr", selector);
 		
 		//System.out.println(elements.html());
 		
 		int k = 1;
-		
-		
-		String originalStr = "����Ǫ��"; // 테스트 
-		String [] charSet = {"utf-8","euc-kr","ksc5601","iso-8859-1","x-windows-949"};
-		  
-		for (int i=0; i<charSet.length; i++) {
-		 for (int j=0; j<charSet.length; j++) {
-		  try {
-		   System.out.println("[" + charSet[i] +"," + charSet[j] +"] = " + new String(originalStr.getBytes(charSet[i]), charSet[j]));
-		  } catch (UnsupportedEncodingException e) {
-		   e.printStackTrace();
-		  }
-		 }
-		}
-
-
-		
 		for( Element ele :  elements) {
 			if( ele.getElementsByTag("tr").hasAttr("onmouseover")  ) {
-				
-			//	String res = new String(super.handleResponse(response).getBytes("8859_1"), "euc-kr");
-				
-				String gg = ele.getElementsByTag("td").get(2).html();
-				String decoded_result = new String(gg.getBytes("utf-8"), "CP1251");
-
-				
-				System.out.println( gg  );
-				
+				System.out.println( ele.getElementsByTag("td").get(2).text() );
 			}
 		}
 		/*
@@ -88,22 +63,22 @@ public class DogZzangCoKr {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {} " , dataTitle );
+				logger.debug( "TITEL : {}" , dataTitle );
 				cli.setDataTitle( dataTitle) ;
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
-				logger.debug( "LINK : {} " , dataLink );
+				logger.debug( "LINK : {}" , dataLink );
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
 				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {} " , dataImg );
+				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
 				//아이디 추출
 				String dataId = dataLink.replaceAll(patternId, "$3");
-				logger.debug( "ID : {} " , dataId );
+				logger.debug( "ID : {}" , dataId );
 				cli.setDataId( dataId );
 				
 				//내용 접근 URL
@@ -129,9 +104,9 @@ public class DogZzangCoKr {
 	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td:nth-child(2) > table";
-		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
+		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {} " , contents.text() );
+		logger.debug( "CONTENTS : {}" , contents.text() );
 		
 		return contents.text();
 	}
@@ -162,22 +137,22 @@ public class DogZzangCoKr {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {} " , dataTitle );
+				logger.debug( "TITEL : {}" , dataTitle );
 				cli.setDataTitle( dataTitle) ;
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
-				logger.debug( "LINK : {} " , dataLink );
+				logger.debug( "LINK : {}" , dataLink );
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
 				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {} " , dataImg );
+				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
 				//아이디 추출
 				String dataId = dataLink.replaceAll(patternId, "$3");
-				logger.debug( "ID : {} " , dataId );
+				logger.debug( "ID : {}" , dataId );
 				cli.setDataId( dataId );
 				
 				//내용 접근 URL
