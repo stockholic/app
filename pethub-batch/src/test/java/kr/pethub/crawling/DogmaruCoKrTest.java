@@ -1,5 +1,8 @@
 package kr.pethub.crawling;
 
+/**
+ * 도그마루 https://dogmaru.co.kr
+ */
 import java.io.IOException;
 
 import org.junit.Test;

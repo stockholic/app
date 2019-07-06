@@ -12,6 +12,11 @@ import org.slf4j.LoggerFactory;
 import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 
+/**
+ * 도그마루 https://dogmaru.co.kr
+ * @author shkr
+ *
+ */
 public class DogmaruCoKr {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());

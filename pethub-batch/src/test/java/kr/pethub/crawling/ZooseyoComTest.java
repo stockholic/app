@@ -10,36 +10,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import kr.pethub.BaseTestCase;
 import kr.pethub.job.crawler.service.CrawlingService;
 import kr.pethub.job.crawler.vo.SiteLinkData;
-import kr.pethub.site.TheilovedogCom;
+import kr.pethub.site.ZooseyoCom;
 
 /**
- * I love dog http://www.theilovedog.com
+ * http://www.zooseyo.com 주세요닷컴
  * @author shkr
  *
  */
-public class TheilovedogComTest extends BaseTestCase{
-//public class TheilovedogComTest {
+public class ZooseyoComTest extends BaseTestCase{
+//public class ZooseyoComTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	 
 	@Autowired
 	private CrawlingService  service;
 	
-	TheilovedogCom obj = new TheilovedogCom();
+	ZooseyoCom obj = new ZooseyoCom();
 	
 	@Test
 	public void 강아지_목록추출() throws IOException{
 		
-		String linkUrl = "http://www.theilovedog.com/dog/list.php?category=1";
+		String linkUrl = "http://www.zooseyo.com/sale/sale_list.php?animal=dog";
 		
 		obj.getDogList(linkUrl);
 	}
 	
-	@Test
+	//에러남
+	//@Test
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.theilovedog.com/dog/view.php?category=1&id=626 ");
+		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562393946424&no=277606&page=1&kind=&area=");
 		
 		obj.getDogContent(siteLinkData);
 		
@@ -47,6 +48,8 @@ public class TheilovedogComTest extends BaseTestCase{
 	
 	@Test
 	public void 데이터저장(){
-		service.crawling("2");
+		
+		//siteSrl 일련번호
+		service.crawling("3");
 	}
 }

@@ -12,6 +12,11 @@ import org.slf4j.LoggerFactory;
 import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 
+/**
+ * I love dog http://www.theilovedog.com
+ * @author shkr
+ *
+ */
 public class TheilovedogCom {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());

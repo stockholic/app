@@ -12,6 +12,7 @@ CREATE TABLE site_info (
 CREATE TABLE site_link (
   link_srl int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
   site_srl int(10) unsigned DEFAULT NULL COMMENT 'site_info 참조번호',
+  link_cd varchar(10) DEFAULT NULL COMMENT '링크코드',
   link_nm varchar(100) DEFAULT NULL COMMENT '링크명',
   link_url varchar(100) DEFAULT NULL COMMENT '링크 url',
   link_cls text COMMENT '실행클래스',
@@ -22,7 +23,7 @@ CREATE TABLE site_link (
   upt_dt datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '수정일',
   exc_dt datetime  DEFAULT NULL COMMENT '실행일',
   PRIMARY KEY (link_srl),
-  KEY site_link_idx (site_srl)
+  KEY site_link_idx (site_srl,link_cd)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사이트링크';
 
 
@@ -53,19 +54,20 @@ CREATE TABLE site_link_log (
   log_msg text COMMENT '에러내용',
   reg_dt datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록일',
   PRIMARY KEY (log_srl),
-  KEY `site_link_log_idx` (`site_srl`,`link_srl`,`log_cd`)
+  KEY site_link_log_idx (site_srl,link_srl,log_cd)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='사이트로그';
 
 
 
 
+
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (1,'도그마루','dogmaru.co.kr','강아지, 고양이 분양','2019-07-05 00:00:00','2019-07-05 00:00:00');
-insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (2,'I love dog','www.theilovedog.com','강이지, 공양이 분','2019-07-06 00:00:00','2019-07-06 00:00:00');
+insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (2,'I love dog','www.theilovedog.com','강이지, 고양이 분양','2019-07-06 00:00:00','2019-07-06 00:00:00');
+insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (3,'주세요닷컴','www.zooseyo.com','강아지, 고양이 분양','2019-07-06 00:00:00','2019-07-06 00:00:00');
 
-
-insert into `site_link`(`site_srl`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (1,'강아지 분양','https://dogmaru.co.kr/sdog','kr.pethub.site.DogmaruCoKr','getDogList','getDogContent',20,'Y','2019-07-05 00:00:00','2019-07-06 13:20:07','2019-07-06 15:30:09');
-insert into `site_link`(`site_srl`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (1,'고양이 분양','https://dogmaru.co.kr/cat','kr.pethub.site.DogmaruCoKr','getCatList','getCatContent',0,'Y','2019-07-06 00:00:00','2019-07-06 00:00:00','2019-07-06 15:30:09');
-insert into `site_link`(`site_srl`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (2,'강아지 분양','http://www.theilovedog.com/dog/list.php?category=1','kr.pethub.site.TheilovedogCom','getDogList','getDotContent',18,'Y','2019-07-06 00:00:00','2019-07-06 00:00:00','2019-07-06 15:29:32');
-
-
+insert into `site_link`(`link_srl`,`site_srl`,`link_cd`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (1,1,'dog','강아지 분양','https://dogmaru.co.kr/sdog','kr.pethub.site.DogmaruCoKr','getDogList','getDogContent',20,'Y','2019-07-05 00:00:00','2019-07-06 13:20:07','2019-07-06 15:49:15');
+insert into `site_link`(`link_srl`,`site_srl`,`link_cd`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (2,1,'cat','고양이 분양','https://dogmaru.co.kr/cat','kr.pethub.site.DogmaruCoKr','getCatList','getCatContent',20,'Y','2019-07-06 00:00:00','2019-07-06 00:00:00','2019-07-06 15:49:27');
+insert into `site_link`(`link_srl`,`site_srl`,`link_cd`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (3,2,'dog','강아지 분양','http://www.theilovedog.com/dog/list.php?category=1','kr.pethub.site.TheilovedogCom','getDogList','getDogContent',18,'Y','2019-07-06 00:00:00','2019-07-06 00:00:00','2019-07-06 15:29:32');
+insert into `site_link`(`link_srl`,`site_srl`,`link_cd`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (4,3,'dog','강아지 분양','http://www.zooseyo.com/sale/sale_list.php?animal=dog','kr.pethub.site.ZooseyoCom','getDogList','',29,'Y','2019-07-06 00:00:00','2019-07-06 00:00:00','2019-07-06 19:08:09');
+insert into `site_link`(`link_srl`,`site_srl`,`link_cd`,`link_nm`,`link_url`,`link_cls`,`link_mtd_lst`,`link_mtd_cts`,`link_cnt`,`use_yn`,`reg_dt`,`upt_dt`,`exc_dt`) values (5,3,'cat','고양이 분양','http://www.zooseyo.com/sale/sale_list.php?animal=cat','kr.pethub.site.ZooseyoCom','getCatList','',0,'N','2019-07-06 00:00:00','2019-07-06 00:00:00',null);
 

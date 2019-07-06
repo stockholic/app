@@ -7,6 +7,7 @@
 	<select id="selectSiteLinkList" resultType="kr.pethub.job.crawler.vo.SiteLink">
 		SELECT 
 		     si.site_srl
+		    , si.site_nm
       		, sl.link_srl
 		  	, sl.link_nm
 		  	, sl.link_url

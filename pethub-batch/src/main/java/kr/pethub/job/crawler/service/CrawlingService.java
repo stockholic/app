@@ -67,7 +67,7 @@ public class CrawlingService {
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
 						//내용 추출
-						if( StringUtils.isNotEmpty(siteLinkData.getDataLink())) {
+						if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )) {
 							Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
 							String content = (String)getContent.invoke(obj, siteLinkData);
 							
