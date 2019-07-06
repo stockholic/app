@@ -8,7 +8,8 @@ public class SiteLink {
 	private String linkNm;				// 링크명
 	private String linkUrl;				// 링크 URL
 	private String linkCls;				// 실행 클래스
-	private String linkMtd;				// 실행 메소드
+	private String linkMtdLst;			// 실행 목록 메소드
+	private String linkMtdCts;			// 실행 내용 메소드
 	private int linkCnt;					// 링크수 
 	
 	public String getLinkSrl() {
@@ -47,11 +48,17 @@ public class SiteLink {
 	public void setLinkCls(String linkCls) {
 		this.linkCls = linkCls;
 	}
-	public String getLinkMtd() {
-		return linkMtd;
+	public String getLinkMtdLst() {
+		return linkMtdLst;
 	}
-	public void setLinkMtd(String linkMtd) {
-		this.linkMtd = linkMtd;
+	public void setLinkMtdLst(String linkMtdLst) {
+		this.linkMtdLst = linkMtdLst;
+	}
+	public String getLinkMtdCts() {
+		return linkMtdCts;
+	}
+	public void setLinkMtdCts(String linkMtdCts) {
+		this.linkMtdCts = linkMtdCts;
 	}
 	public int getLinkCnt() {
 		return linkCnt;
@@ -59,5 +66,6 @@ public class SiteLink {
 	public void setLinkCnt(int linkCnt) {
 		this.linkCnt = linkCnt;
 	}
+	
 	
 }

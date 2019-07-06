@@ -11,10 +11,15 @@
 		  	, sl.link_nm
 		  	, sl.link_url
 		  	, sl.link_cls
-		  	, sl.link_mtd
+		  	, sl.link_mtd_lst
+		  	, sl.link_mtd_cts
 		FROM site_info si, site_link sl
-		WHERE si.site_srl = sl.link_srl
+		WHERE si.site_srl = sl.site_srl
 		AND sl.use_yn = 'Y'
+
+		<if test="siteSrl != '' and siteSrl != null">
+		AND	si.site_srl = #{siteSrl} 
+		</if>
 	</select>
 
 	<select id="selectSiteLinkDataList" resultType="kr.pethub.job.crawler.vo.SiteLinkData">

@@ -29,7 +29,7 @@ public class jobHandler {
 		
 		if("crawling".equals(job)){
 			
-			crawlingService.crawling();
+			crawlingService.crawling("");
 			
 			logger.info("startDt : {} : ",  params.get("startDt" ));
 			logger.info("endDt : {} : ",  params.get("endDt" ));

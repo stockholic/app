@@ -28,14 +28,14 @@ public class CrawlingService {
 	 * Reflction 을 이용하여 Class 호출 실행
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	public void crawling() {
+	public void crawling(String siteSrl) {
 		
 		//사이트 Crawling 대상 URL
-		List<SiteLink> linkList = crawlingDao.selectSiteLinkList();
+		List<SiteLink> linkList = crawlingDao.selectSiteLinkList(siteSrl);
 		
 		for( SiteLink lst : linkList ) {
 
-			logger.info(lst.getLinkNm());
+			logger.info(lst.getLinkNm() +" :  "+ lst.getLinkUrl() );
 			
 			int linkCnt = 0;
 			SiteLinkLog siteLinkLog = new SiteLinkLog();
@@ -47,7 +47,7 @@ public class CrawlingService {
 				Object obj = clasz.newInstance();
 				
 				//Method 호출
-				Method getList = clasz.getMethod(lst.getLinkMtd(), String.class);
+				Method getList = clasz.getMethod(lst.getLinkMtdLst(), String.class);
 				List<SiteLinkData> list =  (List<SiteLinkData>)getList.invoke(obj, lst.getLinkUrl());
 				
 				//추출한 데이터 저장
@@ -66,8 +66,9 @@ public class CrawlingService {
 					//update 후 없으면 insert
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
+						//내용 추출
 						if( StringUtils.isNotEmpty(siteLinkData.getDataLink())) {
-							Method getContent = clasz.getMethod("getContent", SiteLinkData.class);
+							Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
 							String content = (String)getContent.invoke(obj, siteLinkData);
 							
 							logger.debug("CONTENT : {}",  content);
