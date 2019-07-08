@@ -48,8 +48,8 @@ public class TheilovedogCom {
 			
 			//제목 추출
 			String dataTitle = ele.getElementsByClass("dog_sbj").text();
-			logger.debug( "TITEL : {}" , dataTitle );
-			cli.setDataTitle( dataTitle) ;
+			logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
+			cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
@@ -78,7 +78,7 @@ public class TheilovedogCom {
 	}
 	
 	/**
-	 * 내용 추출
+	 * 강아지 내용 추출
 	 * @return
 	 * @throws IOException 
 	 */
@@ -87,9 +87,9 @@ public class TheilovedogCom {
 		String selector = ".dog_info_wrap";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" , contents.text() );
+		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
 		
-		return contents.text();
+		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
 	

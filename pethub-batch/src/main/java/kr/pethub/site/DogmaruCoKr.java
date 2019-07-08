@@ -48,8 +48,8 @@ public class DogmaruCoKr {
 			
 			//제목 추출
 			String dataTitle = ele.select(".title span").text();
-			logger.debug( "TITEL : {}" , dataTitle );
-			cli.setDataTitle( dataTitle) ;
+			logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
+			cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle)) ;
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
@@ -88,9 +88,9 @@ public class DogmaruCoKr {
 		String selector = "#w201901175c3fe684e2c7c .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" , contents.text() );
+		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
 		
-		return contents.text();
+		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
 	/**
@@ -119,8 +119,8 @@ public class DogmaruCoKr {
 			
 			//제목 추출
 			String dataTitle = ele.select(".title span").text();
-			logger.debug( "TITEL : {}" , dataTitle );
-			cli.setDataTitle( dataTitle) ;
+			logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
+			cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 			
 			//링크 추출
 			String dataLink = ele.select("a").attr("href"); 
@@ -159,9 +159,9 @@ public class DogmaruCoKr {
 		String selector = "#w201901175c40056b2382a .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" , contents.text() );
+		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
 		
-		return contents.text();
+		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
 	

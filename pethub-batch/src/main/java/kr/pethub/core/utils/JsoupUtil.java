@@ -31,4 +31,15 @@ public class JsoupUtil {
 	 }
 	
 	
+	/**
+	 * 특수문자 제거
+	 * @param str
+	 * @return
+	 */
+	public static String specialCharacterRemove(String str) {
+		String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z0-9\\s]";
+		str = str.replaceAll(match, "");
+		return str;
+	}
+	
 }

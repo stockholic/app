@@ -1,11 +1,6 @@
 package kr.pethub.site;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +58,8 @@ public class DogZzangCoKr {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {}" , dataTitle );
-				cli.setDataTitle( dataTitle) ;
+				logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
+				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
@@ -106,9 +101,9 @@ public class DogZzangCoKr {
 		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td:nth-child(2) > table";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {}" , contents.text() );
+		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
 		
-		return contents.text();
+		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
 	/**
@@ -137,8 +132,8 @@ public class DogZzangCoKr {
 				
 				//제목 추출
 				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {}" , dataTitle );
-				cli.setDataTitle( dataTitle) ;
+				logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
+				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 				
 				//링크 추출
 				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");

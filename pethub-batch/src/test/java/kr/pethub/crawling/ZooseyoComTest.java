@@ -58,7 +58,7 @@ public class ZooseyoComTest extends BaseTestCase{
 	public void 고양이_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag15623238255&no=277525&page=1&kind=&area=");
+		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562571054429&no=277836&page=1&kind=&area=");
 		
 		obj.getCatContent(siteLinkData);
 		
