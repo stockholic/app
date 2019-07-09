@@ -1,3 +1,5 @@
+-- clean install -DskipTests package -P local
+
 CREATE TABLE site_info (
   site_srl int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
   site_nm varchar(100) DEFAULT NULL COMMENT '사이트명',
