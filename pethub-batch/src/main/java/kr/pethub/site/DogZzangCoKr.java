@@ -35,39 +35,33 @@ public class DogZzangCoKr {
 		
 		String selector = "body > table > tbody > tr > td > table:nth-child(6) > tbody > tr > td:nth-child(2) > table:nth-child(2) > tbody > tr > td > table";
 		String domain = "http://www.dog-zzang.co.kr";
+		String patternLink ="(window\\.open\\()'([^\\s']+)'(.*)";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl,"euc-kr", selector);
 		
-		//System.out.println(elements.html());
-		
 		int k = 1;
 		for( Element ele :  elements) {
-			if( ele.getElementsByTag("tr").hasAttr("onmouseover")  ) {
-				System.out.println( ele.getElementsByTag("td").get(2).text() );
-			}
-		}
-		/*
-		for( Element ele :  elements) {
 			
-			if( ele.getElementsByTag("tr").hasAttr("onclick")  ) {
-				
+			
+			if( ele.getElementsByTag("tr").hasAttr("onmouseover")  ) {
 				logger.debug("--------------------------------------------------------------------------------------------------------------- " + (k++));
 				
 				SiteLinkData cli  = new SiteLinkData();
 				
 				//제목 추출
-				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
+				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text() + " " + ele.getElementsByTag("td").get(5).text() + " " + ele.getElementsByTag("td").get(6).text();
 				logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
-				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
+				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle)); 
 				
 				//링크 추출
-				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
+				String dataLink = domain + ele.getElementsByTag("td").get(1).getElementsByTag("a").attr("onclick");
+				dataLink = dataLink.replaceAll(patternLink, "$2");
 				logger.debug( "LINK : {}" , dataLink );
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
-				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
+				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src").replace(".", "");
 				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
@@ -81,11 +75,9 @@ public class DogZzangCoKr {
 				
 				list.add(cli);
 				
-				
 			}
 			
 		}
-		*/
 		
 
 		return list;
@@ -97,8 +89,8 @@ public class DogZzangCoKr {
 	 * @throws IOException 
 	 */
 	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
-
-		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td:nth-child(2) > table";
+		
+		String selector = "body > div.mask > table:nth-child(2) > tbody > tr:nth-child(2) > td > table:nth-child(6) > tbody > tr > td";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
 		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
@@ -106,63 +98,6 @@ public class DogZzangCoKr {
 		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
-	/**
-	 * 고양이 목록 추출
-	 * @return
-	 * @throws IOException 
-	 */
-	
-	public List<SiteLinkData> getCatList(String linkUrl) throws IOException {
-		
-		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
-		
-		String selector = "body > table:nth-child(6) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr > td > table";
-		String domain = "http://www.zooseyo.com";
-		String patternId ="(.*)(no=)([0-9]+)(.*)";
-		Elements elements = JsoupUtil.getElements(linkUrl, selector);
-		int k = 1;
-		
-		for( Element ele :  elements) {
-			
-			if( ele.getElementsByTag("tr").hasAttr("onclick")  ) {
-				
-				logger.debug("--------------------------------------------------------------------------------------------------------------- " + (k++));
-				
-				SiteLinkData cli  = new SiteLinkData();
-				
-				//제목 추출
-				String dataTitle = ele.getElementsByTag("td").get(2).text() + " " + ele.getElementsByTag("td").get(3).text() + " " + ele.getElementsByTag("td").get(4).text()  + " " + ele.getElementsByTag("td").get(5).text();
-				logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
-				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
-				
-				//링크 추출
-				String dataLink = domain + ele.getElementsByTag("td").get(6).getElementsByTag("a").attr("href").replace("..", "");
-				logger.debug( "LINK : {}" , dataLink );
-				cli.setDataLink(dataLink);
-				
-				//이미지 추출
-				String dataImg = domain + ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {}" , dataImg );
-				cli.setDataImg(dataImg);	
-				
-				//아이디 추출
-				String dataId = dataLink.replaceAll(patternId, "$3");
-				logger.debug( "ID : {}" , dataId );
-				cli.setDataId( dataId );
-				
-				//내용 접근 URL
-				cli.setDataLink(dataLink);	
-				
-				list.add(cli);
-				
-				
-			}
-			
-		}
-		
-
-		return list;
-	}
 	
 	
 }

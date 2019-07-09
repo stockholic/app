@@ -17,8 +17,8 @@ import kr.pethub.site.DogZzangCoKr;
  * @author shkr
  *
  */
-//public class DogZzangCoKrTest extends BaseTestCase{
-public class DogZzangCoKrTest {
+public class DogZzangCoKrTest extends BaseTestCase{
+//public class DogZzangCoKrTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	 
@@ -39,25 +39,7 @@ public class DogZzangCoKrTest {
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562393946424&no=277606&page=1&kind=&area=");
-		
-		obj.getDogContent(siteLinkData);
-		
-	}
-	
-	@Test
-	public void 고양이_목록추출() throws IOException{
-		
-		String linkUrl = "http://www.zooseyo.com/sale/sale_list.php?animal=cat";
-		
-		obj.getDogList(linkUrl);
-	}
-	
-	//@Test
-	public void 고양이_내용추출() throws IOException{
-		
-		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.zooseyo.com/sale/sale_view.php?type=f&oid_no=bbag1562326785187&no=277531&page=1&kind=&area=");
+		siteLinkData.setDataLink("http://www.dog-zzang.co.kr/dog_sale/sale_view.php?oid_no=zzang1562577722217&no=1118522&page=1&dog_kind=&area=&dog_money=");
 		
 		obj.getDogContent(siteLinkData);
 		

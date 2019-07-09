@@ -27,6 +27,14 @@ public class CrawlingService {
 	/**
 	 * Reflction 을 이용하여 Class 호출 실행
 	 */
+	public void crawling() {
+		crawling(""); 
+	}
+	
+	/**
+	 * Reflction 을 이용하여 Class 호출 실행
+	 * @param siteSrl
+	 */
 	@SuppressWarnings({ "unchecked", "unused" })
 	public void crawling(String siteSrl) {
 		
@@ -35,7 +43,7 @@ public class CrawlingService {
 		
 		for( SiteLink lst : linkList ) {
 
-			logger.info(lst.getLinkNm() +" :  "+ lst.getLinkUrl() );
+			logger.info("----------------------------- " + lst.getLinkNm() +" :  "+ lst.getLinkUrl() );
 			
 			int linkCnt = 0;
 			SiteLinkLog siteLinkLog = new SiteLinkLog();
