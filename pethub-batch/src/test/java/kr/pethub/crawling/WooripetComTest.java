@@ -17,7 +17,7 @@ import kr.pethub.site.WooripetCom;
  * @author shkr
  *
  */
-public class PuppycafeCoKrTest extends BaseTestCase{
+public class WooripetComTest extends BaseTestCase{
 //public class PuppycafeCoKrTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
