@@ -11,18 +11,16 @@
   
   <properties>
 		<java.version>1.8</java.version>
-		<spring.version>4.3.1.RELEASE</spring.version>
-		<spring.security.version>4.1.1.RELEASE</spring.security.version>
-		<javax.jstl.version>1.2</javax.jstl.version>
+		<spring.version>5.1.8.RELEASE</spring.version>
 		<slf4j.version>1.7.10</slf4j.version>
 		<slf4j-log4j12.version>1.7.10</slf4j-log4j12.version>
 		<logback.version>1.0.13</logback.version>
 		<log4j.version>1.2.17</log4j.version>
 		<mysql-connector-java.version>5.1.46</mysql-connector-java.version>
-		<mybatis.version>3.2.2</mybatis.version>
-		<mybatis-spring.version>1.2.0</mybatis-spring.version>
+		<mybatis.version>3.5.1</mybatis.version>
+		<mybatis-spring.version>2.0.1</mybatis-spring.version>
 		<aspectj.version>1.8.4</aspectj.version>
-		<jackson.version>2.8.5</jackson.version>
+		<jackson.version>2.9.9</jackson.version>
 		<maven.encoding>UTF-8</maven.encoding>
 		
 		<deploy.target.dir>D:/99.tmp/spring_batch</deploy.target.dir>
@@ -120,39 +118,14 @@
 	     
 	  <!-- Apache Commons -->
 		<dependency>
-	        <groupId>commons-dbcp</groupId>
-	        <artifactId>commons-dbcp</artifactId>
-	        <version>1.4</version>
-	    </dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
-		</dependency>
-		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.6</version>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.6.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.6</version>
-		</dependency>
-	    <dependency>
-	        <groupId>commons-collections</groupId>
-	        <artifactId>commons-collections</artifactId>
-	        <version>3.2.2</version>
-	    </dependency>
-		<dependency>
-		    <groupId>commons-logging</groupId>
-		    <artifactId>commons-logging</artifactId>
-		    <version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.10</version>
 		</dependency>
 				 
 		<!-- Test -->
