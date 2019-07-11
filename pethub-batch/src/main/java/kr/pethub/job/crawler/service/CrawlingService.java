@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.dao.CrawlingDao;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.job.crawler.vo.SiteLinkLog;
@@ -40,6 +41,7 @@ public class CrawlingService {
 		
 		//사이트 Crawling 대상 URL
 		List<SiteLink> linkList = crawlingDao.selectSiteLinkList(siteSrl);
+		 String patternUrl = "^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/?([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?$";
 		
 		for( SiteLink lst : linkList ) {
 
@@ -75,7 +77,7 @@ public class CrawlingService {
 					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
 						
 						//내용 추출
-						if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )) {
+						if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )  && JsoupUtil.isRegex(patternUrl, siteLinkData.getDataLink()) ) {
 							Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
 							String content = (String)getContent.invoke(obj, siteLinkData);
 							
