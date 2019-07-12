@@ -64,7 +64,11 @@
 		UPDATE site_link_data SET
 			 data_title = #{dataTitle}
 			, data_link = #{dataLink}
+			
+			<if test="dataImg != '' and dataImg != null">
 			, data_img = #{dataImg}
+			</if>
+			
 			, upt_dt = SYSDATE()
 		WHERE 	site_srl = #{siteSrl}
 		AND link_srl = #{linkSrl}

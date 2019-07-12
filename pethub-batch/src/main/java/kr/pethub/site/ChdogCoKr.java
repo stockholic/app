@@ -81,14 +81,14 @@ public class ChdogCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
-		String selector = "body";
+		String selector = "nodata";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	

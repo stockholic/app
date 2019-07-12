@@ -83,14 +83,14 @@ public class DogmaruCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "#w201901175c3fe684e2c7c .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	/**
@@ -154,14 +154,14 @@ public class DogmaruCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getCatContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getCatContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "#w201901175c40056b2382a .tableStrong";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	

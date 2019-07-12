@@ -82,14 +82,15 @@ public class AnimalOrKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "#view_content";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , "euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
 	}
 	
 	

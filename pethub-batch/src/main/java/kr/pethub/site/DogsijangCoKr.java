@@ -39,8 +39,6 @@ public class DogsijangCoKr {
 
 		Elements elements = JsoupUtil.getElements(linkUrl,"euc-kr", selector);
 		
-		System.out.println(elements.html());
-		
 		int k = 1;
 		for( Element ele :  elements) {
 			
@@ -86,7 +84,7 @@ public class DogsijangCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public SiteLinkData getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 		
 		String domain = "http://www.dogsijang.co.kr";
 		String selector = ".list_table .contents";
@@ -112,7 +110,6 @@ public class DogsijangCoKr {
 		logger.debug( "CONTENTS : {}" , dataContent );
 		logger.debug( "DATAIMG : {}" , dataImg);
 		
-		return siteLinkData;
 	}
 	
 	

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import kr.pethub.BaseTestCase;
 import kr.pethub.job.crawler.service.CrawlingService;
 import kr.pethub.job.crawler.vo.SiteLinkData;
-import kr.pethub.site.DogZzangCoKr;
 import kr.pethub.site.DogsijangCoKr;
 
 /**
@@ -18,8 +17,8 @@ import kr.pethub.site.DogsijangCoKr;
  * @author shkr
  *
  */
-//public class DogsijangCoKrTest extends BaseTestCase{
-public class DogsijangCoKrTest {
+public class DogsijangCoKrTest extends BaseTestCase{
+//public class DogsijangCoKrTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	 
@@ -43,9 +42,6 @@ public class DogsijangCoKrTest {
 		siteLinkData.setDataLink("http://www.dogsijang.co.kr/board_dog/view.php?tb=board_sale&pagenum=1&search_live=&search_dog=&no=352472");
 		
 		obj.getDogContent(siteLinkData);
-		
-		System.out.println(">>>>>>>>>" + siteLinkData.getDataContent());
-		System.out.println(">>>>>>>>>" + siteLinkData.getDataImg());
 		
 	}
 	

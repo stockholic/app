@@ -80,10 +80,7 @@ public class CrawlingService {
 						//내용 추출
 						if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )  && JsoupUtil.isRegex(patternUrl, siteLinkData.getDataLink()) ) {
 							Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
-							String content = (String)getContent.invoke(obj, siteLinkData);
-							
-							logger.debug("CONTENT : {}",  content);
-							siteLinkData.setDataContent(content);
+							getContent.invoke(obj, siteLinkData);
 						}
 						
 						crawlingDao.insertSiteLinkData(siteLinkData);

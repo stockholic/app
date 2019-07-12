@@ -39,7 +39,7 @@ public class DogZzangCoKrTest extends BaseTestCase{
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.dog-zzang.co.kr/dog_sale/sale_view.php?oid_no=zzang1562577722217&no=1118522&page=1&dog_kind=&area=&dog_money=");
+		siteLinkData.setDataLink("http://www.dog-zzang.co.kr/dog_sale/sale_view.php?oid_no=zzang1562919445497&no=1119008&page=1&dog_kind=&area=&dog_money=");
 		
 		obj.getDogContent(siteLinkData);
 		

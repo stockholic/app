@@ -87,14 +87,14 @@ public class ZooseyoCom {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , "euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	/**
@@ -160,14 +160,14 @@ public class ZooseyoCom {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getCatContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getCatContent( SiteLinkData siteLinkData ) throws IOException {
 
 		String selector = "body > table:nth-child(2) > tbody > tr > td > table:nth-child(24) > tbody > tr > td";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , "euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	

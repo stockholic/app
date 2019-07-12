@@ -88,14 +88,21 @@ public class DogZzangCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 		
-		String selector = "body > div.mask > table:nth-child(2) > tbody > tr:nth-child(2) > td > table:nth-child(6) > tbody > tr > td";
+		String selector = "body > div.mask > table:nth-child(2) > tbody > tr:nth-child(2) > td > table p";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
+		String str = "";
+		for( Element ele :  contents) {
+			if( ele.attr("style").contains("line-height") ) {
+				str = ele.text();
+			}
+		}
 		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		String dataContent = JsoupUtil.specialCharacterRemove(str);		
+		siteLinkData.setDataContent(dataContent);
+		logger.debug( "CONTENTS : {}" , dataContent );
 	}
 	
 	
