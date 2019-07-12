@@ -44,6 +44,9 @@ public class DogsijangCoKrTest {
 		
 		obj.getDogContent(siteLinkData);
 		
+		System.out.println(">>>>>>>>>" + siteLinkData.getDataContent());
+		System.out.println(">>>>>>>>>" + siteLinkData.getDataImg());
+		
 	}
 	
 	@Test

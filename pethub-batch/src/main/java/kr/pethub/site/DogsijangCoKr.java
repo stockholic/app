@@ -86,7 +86,7 @@ public class DogsijangCoKr {
 	 * @return
 	 * @throws IOException 
 	 */
-	public String getDogContent( SiteLinkData siteLinkData ) throws IOException {
+	public SiteLinkData getDogContent( SiteLinkData siteLinkData ) throws IOException {
 		
 		String domain = "http://www.dogsijang.co.kr";
 		String selector = ".list_table .contents";
@@ -102,12 +102,17 @@ public class DogsijangCoKr {
 			}
 		}
 		
-		siteLinkData.setDataImg(domain + dataImg);
 		
-		logger.debug( "CONTENTS : {}" ,  JsoupUtil.specialCharacterRemove(contents.text() ));
-		logger.debug( "DATAIMG : {}" ,  domain + dataImg);
+		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());
+		dataImg = domain + dataImg;
 		
-		return JsoupUtil.specialCharacterRemove( contents.text() );
+		siteLinkData.setDataContent(dataContent);
+		siteLinkData.setDataImg(dataImg);
+		
+		logger.debug( "CONTENTS : {}" , dataContent );
+		logger.debug( "DATAIMG : {}" , dataImg);
+		
+		return siteLinkData;
 	}
 	
 	
