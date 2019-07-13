@@ -13,7 +13,7 @@ import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.site.ZooseyoCom;
 
 /**
- * http://www.zooseyo.com 주세요닷컴
+ * 주세요닷컴 http://www.zooseyo.com 
  * @author shkr
  *
  */

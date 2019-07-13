@@ -76,7 +76,7 @@ public class RegEx {
 		
 		String str = "javascript:view(\"bbs\",\"2\")".trim();
 		
-		String pattern ="(javascript:view\\()\"([a-z]+)\",\"([0-9])\"(.*)";
+		String pattern ="(javascript:view\\()\"([a-z]+)\",\"([0-9]+)\"(.*)";
 
 		isRegexElement(pattern, str);
 		

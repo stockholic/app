@@ -46,7 +46,7 @@ public class WooripetCom {
 			SiteLinkData cli  = new SiteLinkData();
 			
 			//제목 추출
-			String dataTitle = ele.getElementsByClass("sct_txt").text();
+			String dataTitle = ele.getElementsByClass("sct_txt").text() + " " +  ele.getElementsByClass("sct_cost").text();
 			logger.debug( "TITEL : {}" , JsoupUtil.specialCharacterRemove(dataTitle));
 			cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 			
