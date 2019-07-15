@@ -42,6 +42,8 @@ insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) valu
 insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (5,4,'메뉴등록','/adm/menu/list',1,'Y');
 insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (6,4,'메뉴설정','/adm/menu/role/list',2,'Y');
 insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (7,0,'게시판관리','',2,'Y');
+insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (8,7,'자료실','/adm/board/01/list',1,'Y');
+insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (9,1,'캐쉬관리','/adm/cache/list',4,'Y');
 
 CREATE TABLE auth_menu_role (
   role_cd varchar(10) DEFAULT NULL COMMENT '권한코드',
