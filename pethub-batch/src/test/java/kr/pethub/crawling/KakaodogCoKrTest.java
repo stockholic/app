@@ -13,7 +13,7 @@ import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.site.KakaodogCoKr;
 
 /**
- * KaKao Dog  http://www.kakaodog.co.kr
+ * KaKao Dog  http://www.kakaodog.co.kr DogfarmCoKr 과 비슷
  * @author shkr
  *
  */

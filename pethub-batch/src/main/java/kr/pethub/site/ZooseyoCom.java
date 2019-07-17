@@ -2,6 +2,7 @@ package kr.pethub.site;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jsoup.nodes.Element;
@@ -38,8 +39,9 @@ public class ZooseyoCom {
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr", selector);
-		int k = 1;
+		Collections.reverse(elements);
 		
+		int k = 1;
 		for( Element ele :  elements) {
 			
 			if( ele.getElementsByTag("tr").hasAttr("onclick")  ) {
@@ -111,8 +113,9 @@ public class ZooseyoCom {
 		String domain = "http://www.zooseyo.com";
 		String patternId ="(.*)(no=)([0-9]+)(.*)";
 		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr", selector);
-		int k = 1;
+		Collections.reverse(elements);
 		
+		int k = 1;
 		for( Element ele :  elements) {
 			
 			if( ele.getElementsByTag("tr").hasAttr("onclick")  ) {

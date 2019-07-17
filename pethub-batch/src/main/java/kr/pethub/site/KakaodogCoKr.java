@@ -2,6 +2,7 @@ package kr.pethub.site;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jsoup.nodes.Element;
@@ -36,6 +37,7 @@ public class KakaodogCoKr {
 		String patternLink ="(javascript:VipView\\()'([0-9]+)'(.*)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr", selector);
+		Collections.reverse(elements);
 		
 		int k = 1;
 		for( Element ele :  elements) {

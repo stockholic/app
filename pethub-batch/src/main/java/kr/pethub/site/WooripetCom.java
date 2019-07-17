@@ -2,6 +2,7 @@ package kr.pethub.site;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jsoup.nodes.Element;
@@ -36,7 +37,7 @@ public class WooripetCom {
 		String patternId ="(.*)(it_id=)([0-9]+)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl, selector);
-		
+		Collections.reverse(elements);
 		
 		int k = 1;
 		for( Element ele :  elements) {

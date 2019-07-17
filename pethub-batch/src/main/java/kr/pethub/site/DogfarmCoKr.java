@@ -2,6 +2,7 @@ package kr.pethub.site;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.jsoup.nodes.Element;
@@ -28,25 +29,25 @@ public class DogfarmCoKr {
 	 * @throws IOException 
 	 */
 	
-	public List<SiteLinkData> getDogList1(String linkUrl) throws IOException {
+	public List<SiteLinkData> getDogList(String linkUrl) throws IOException {
 		
 		List<SiteLinkData> list = new ArrayList<SiteLinkData>();
 		
 		String domain = "http://www.dogfarm.co.kr";
 		String selector = ".left tr";
-		String patternId ="(.*)(goodsNo=)([0-9]+)";
+		String patternId ="(.*)(id=)([0-9]+)";
 
 		Elements elements = JsoupUtil.getElements(linkUrl, "euc-kr",selector);
+		Collections.reverse(elements);
 		
-		
+		/*
 		for( Element ele :  elements) {
 			if( ele.getElementsByTag("tr").hasAttr("onmouseover")  ) {
 				System.out.println(ele.html());
 				System.out.println("----------------------------------------------------------------");
 			}
 		}
-				
-		
+		*/
 		
 		int k = 1;
 		for( Element ele :  elements) {
@@ -63,15 +64,15 @@ public class DogfarmCoKr {
 				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 	
 				//링크 추출
-				String dataLink = ele.select("a").attr("href").replace("..", ""); 
-				logger.debug( "LINK : {}" , domain + dataLink );
-				cli.setDataLink(domain + dataLink);
+				String dataLink = ele.getElementsByTag("td").get(2).getElementsByTag("a").attr("href"); 
+				logger.debug( "LINK : {}" , domain + "/gnu/" + dataLink );
+				cli.setDataLink(domain + "/gnu/" + dataLink);
 	
-				/*
 				//이미지 추출
-				String dataImg = ele.getElementsByTag("img").attr("src");
-				logger.debug( "IMAGE : {}" , domain + dataImg );
-				cli.setDataImg(domain + dataImg);	
+				String dataImg = ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src"); 
+				dataImg = dataImg.contains("camera5.gif") ? "" : domain + "/gnu/" + dataImg; 
+				logger.debug( "IMAGE : {}" , dataImg );
+				cli.setDataImg(dataImg);	
 				
 				//아이디 추출
 				String dataId = dataLink.replaceAll(patternId, "$3");
@@ -82,7 +83,6 @@ public class DogfarmCoKr {
 				cli.setDataLink(cli.getDataLink());	
 				
 				list.add(cli);
-				*/
 			
 			}
 		}
@@ -98,8 +98,8 @@ public class DogfarmCoKr {
 	 */
 	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
-		String selector = "nodata";
-		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() , selector );
+		String selector = "body > table > tbody > tr:nth-child(6) > td > table:nth-child(3) > tbody > tr:nth-child(2) > td > p:nth-child(2)";
+		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
 		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
 		siteLinkData.setDataContent(dataContent);

@@ -12,7 +12,7 @@ import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.site.DogfarmCoKr;
 
 /**
- * 도그팜 http://www.dogfarm.co.kr/
+ * 도그팜 http://www.dogfarm.co.kr/, KakaodogCoKr 과 비슷
  * @author shkr
  *
  */
@@ -31,21 +31,20 @@ public class DogfarmCoKrTest {
 		
 		String linkUrl = "http://www.dogfarm.co.kr/gnu/index.php";
 		
-		obj.getDogList1(linkUrl);
+		obj.getDogList(linkUrl);
 	}
 	
 	@Test
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://chdog.co.kr/goods/goods_view.php?goodsNo=1000000688");
+		siteLinkData.setDataLink("http://www.kakaodog.co.kr/gnu/vip_view.php?id=9307");
 		
-		//내용 이미지 , 안함
-		//obj.getDogContent(siteLinkData);
+		obj.getDogContent(siteLinkData);
 		
 	}
 	
-	@Test
+	//@Test
 	public void 데이터저장(){
 		service.crawling("6");
 	}
