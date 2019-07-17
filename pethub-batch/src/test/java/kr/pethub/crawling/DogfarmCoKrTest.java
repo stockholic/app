@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import kr.pethub.BaseTestCase;
 import kr.pethub.job.crawler.service.CrawlingService;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.site.DogfarmCoKr;
@@ -16,8 +17,8 @@ import kr.pethub.site.DogfarmCoKr;
  * @author shkr
  *
  */
-//public class DogfarmCoKr extends BaseTestCase{
-public class DogfarmCoKrTest {
+public class DogfarmCoKrTest extends BaseTestCase{
+//public class DogfarmCoKrTest {
 	
 	 Logger logger = LoggerFactory.getLogger(this.getClass());
 	 
@@ -38,13 +39,13 @@ public class DogfarmCoKrTest {
 	public void 강아지_내용추출() throws IOException{
 		
 		SiteLinkData siteLinkData = new SiteLinkData();
-		siteLinkData.setDataLink("http://www.kakaodog.co.kr/gnu/vip_view.php?id=9307");
+		siteLinkData.setDataLink("http://www.dogfarm.co.kr/gnu/sell.php?sub=view&id=4037");
 		
 		obj.getDogContent(siteLinkData);
 		
 	}
 	
-	//@Test
+	@Test
 	public void 데이터저장(){
 		service.crawling("6");
 	}

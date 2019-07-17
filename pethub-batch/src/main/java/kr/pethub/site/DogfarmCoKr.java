@@ -64,9 +64,9 @@ public class DogfarmCoKr {
 				cli.setDataTitle( JsoupUtil.specialCharacterRemove(dataTitle));
 	
 				//링크 추출
-				String dataLink = ele.getElementsByTag("td").get(2).getElementsByTag("a").attr("href"); 
-				logger.debug( "LINK : {}" , domain + "/gnu/" + dataLink );
-				cli.setDataLink(domain + "/gnu/" + dataLink);
+				String dataLink = domain + "/gnu/" + ele.getElementsByTag("td").get(2).getElementsByTag("a").attr("href"); 
+				logger.debug( "LINK : {}",  dataLink );
+				cli.setDataLink( dataLink);
 	
 				//이미지 추출
 				String dataImg = ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src"); 
@@ -80,7 +80,7 @@ public class DogfarmCoKr {
 				cli.setDataId( dataId );
 				
 				//내용 접근 URL
-				cli.setDataLink(cli.getDataLink());	
+				cli.setDataLink(dataLink);	
 				
 				list.add(cli);
 			
@@ -98,7 +98,7 @@ public class DogfarmCoKr {
 	 */
 	public void getDogContent( SiteLinkData siteLinkData ) throws IOException {
 
-		String selector = "body > table > tbody > tr:nth-child(6) > td > table:nth-child(3) > tbody > tr:nth-child(2) > td > p:nth-child(2)";
+		String selector = "body > table:nth-child(3) > tbody > tr > td:nth-child(4) > table > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(8) > td";
 		Elements contents = JsoupUtil.getElements(siteLinkData.getDataLink() ,"euc-kr", selector );
 		
 		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());		
