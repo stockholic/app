@@ -102,7 +102,7 @@ public class DogsijangCoKr {
 		
 		
 		String dataContent = JsoupUtil.specialCharacterRemove(contents.text());
-		dataImg = domain + dataImg;
+		dataImg =  ("".equals(dataImg)) ? "" :  domain + dataImg;
 		
 		siteLinkData.setDataContent(dataContent);
 		siteLinkData.setDataImg(dataImg);
