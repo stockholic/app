@@ -63,7 +63,7 @@ public class DogZzangCoKr {
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
-				String dataImg = domain +"/dog_sale"+ ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src").replace("./", "/");
+				String dataImg = domain +"/dog_sale/"+ ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src").replace("./", "");
 				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
@@ -145,7 +145,7 @@ public class DogZzangCoKr {
 				cli.setDataLink(dataLink);
 				
 				//이미지 추출
-				String dataImg = domain +"/dog_sale"+ ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src").replace("./", "/");
+				String dataImg = domain +"/dog_sale/"+ ele.getElementsByTag("td").get(1).getElementsByTag("img").attr("src").replace("./", "");
 				logger.debug( "IMAGE : {}" , dataImg );
 				cli.setDataImg(dataImg);	
 				
