@@ -35,29 +35,36 @@ CREATE TABLE auth_menu (
   PRIMARY KEY (menu_srl)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='메뉴관리';
 
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (1,0,'사이트관리','',1,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (2,1,'권한관리','/adm/role/list',1,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (3,1,'사용자관리','/adm/user/list',2,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (4,1,'메뉴관리','',3,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (5,4,'메뉴등록','/adm/menu/list',1,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (6,4,'메뉴설정','/adm/menu/role/list',2,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (7,0,'게시판관리','',2,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (8,7,'자료실','/adm/board/01/list',1,'Y');
-insert into auth_menu(menu_srl,parent_srl,menu_nm,menu_url,menu_stp,use_yn) values (9,1,'캐쉬관리','/adm/cache/list',4,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (1,0,'사이트관리','',1,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (2,1,'권한관리','',3,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (3,1,'유저관리','/adm/user/list',1,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (4,1,'메뉴관리','/adm/menu/list',2,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (5,2,'그룹관리','/adm/role/list',1,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (6,2,'그룹권한설정','/adm/menu/role/list',2,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (7,0,'게시판관리','',3,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (10,1,'캐쉬관리','/adm/cache/list',4,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (11,0,'배치관리','',2,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (12,11,'사이트관리','#',1,'Y');
+insert into `auth_menu`(`menu_srl`,`parent_srl`,`menu_nm`,`menu_url`,`menu_stp`,`use_yn`) values (13,11,'사이트링크관리','#',2,'Y');
+
 
 CREATE TABLE auth_menu_role (
   role_cd varchar(10) DEFAULT NULL COMMENT '권한코드',
   menu_srl int(11) DEFAULT NULL COMMENT '참조번호'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='권한별메뉴';
 
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',1);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',3);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',4);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',2);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',5);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',6);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',10);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',11);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',12);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',13);
+insert into `auth_menu_role`(`role_cd`,`menu_srl`) values ('ADM',7);
 
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',1);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',2);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',3);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',4);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',5);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',6);
-insert into auth_menu_role(role_cd,menu_srl) values ('ADM',7);
 
 CREATE TABLE auth_role (
   role_srl int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '일련번호',
