@@ -194,7 +194,7 @@ CREATE TABLE site_link_log (
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (1,'도그마루','https://dogmaru.co.kr','강아지, 고양이 분양','2019-07-05 00:00:00','2019-07-05 00:00:00');
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (2,'I love dog','http://www.theilovedog.com','강이지 분양','2019-07-06 00:00:00','2019-07-06 00:00:00');
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (3,'주세요닷컴','http://www.zooseyo.com','강아지, 고양이 분양','2019-07-06 00:00:00','2019-07-06 00:00:00');
-insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (4,'도그짱','http://www.dog-zzang.co.kr','강아지, 고양이 분양','2019-07-09 13:36:27','2019-07-09 13:36:27');
+insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (4,'도그짱','http://www.dog-zzang.co.kr','강아지 분양','2019-07-09 13:36:27','2019-07-09 13:36:27');
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (5,'우리펫','http://www.우리펫.com','강아지 분양','2019-07-10 00:00:00','2019-07-10 00:00:00');
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (6,'도그팜','http://www.dogfarm.co.kr','강아지 분양','2019-07-11 00:00:00','2019-07-11 00:00:00');
 insert into `site_info`(`site_srl`,`site_nm`,`site_url`,`site_etc`,`reg_dt`,`upt_dt`) values (7,'유기견보호센터','http://www.animal.or.kr','강아지 분양, 유기견','2019-07-11 00:00:00','2019-07-11 00:00:00');
