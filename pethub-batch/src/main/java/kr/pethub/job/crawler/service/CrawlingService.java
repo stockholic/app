@@ -1,7 +1,6 @@
 package kr.pethub.job.crawler.service;
 
 import java.io.PrintWriter;
-
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -14,9 +13,9 @@ import org.springframework.stereotype.Service;
 
 import kr.pethub.core.utils.JsoupUtil;
 import kr.pethub.job.crawler.dao.CrawlingDao;
+import kr.pethub.job.crawler.vo.SiteLink;
 import kr.pethub.job.crawler.vo.SiteLinkData;
 import kr.pethub.job.crawler.vo.SiteLinkLog;
-import kr.pethub.job.crawler.vo.SiteLink;
 
 @Service
 public class CrawlingService {
@@ -64,29 +63,33 @@ public class CrawlingService {
 				//추출한 데이터 저장
 				for(int i = 0; i < list.size(); i++ ) {
 					
-					SiteLinkData siteLinkData = new SiteLinkData();
-					siteLinkData.setSiteSrl(lst.getSiteSrl());
-					siteLinkData.setLinkSrl(lst.getLinkSrl());
-					siteLinkData.setDataId(list.get(i).getDataId());
-					siteLinkData.setDataTitle(list.get(i).getDataTitle());
-					siteLinkData.setDataLink(list.get(i).getDataLink());
-					siteLinkData.setDataImg(list.get(i).getDataImg());
+					//키값(ID)이 올바른것 만 저장, 숫자 이여야 함 
+					if(  JsoupUtil.isRegex("^[0-9]+$", list.get(i).getDataId()) ) { 
 					
-					siteLinkData.setDataLink((list.get(i).getDataLink()));
-					
-					//update 후 없으면 insert
-					if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
+						SiteLinkData siteLinkData = new SiteLinkData();
+						siteLinkData.setSiteSrl(lst.getSiteSrl());
+						siteLinkData.setLinkSrl(lst.getLinkSrl());
+						siteLinkData.setDataId(list.get(i).getDataId());
+						siteLinkData.setDataTitle(list.get(i).getDataTitle());
+						siteLinkData.setDataLink(list.get(i).getDataLink());
+						siteLinkData.setDataImg(list.get(i).getDataImg());
 						
-						//내용 추출
-						if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )  && JsoupUtil.isRegex(patternUrl, siteLinkData.getDataLink()) ) {
-							Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
-							getContent.invoke(obj, siteLinkData);
+						siteLinkData.setDataLink((list.get(i).getDataLink()));
+						
+						//update 후 없으면 insert
+						if(crawlingDao.updateSiteLinkData(siteLinkData) == 0){
+							
+							//내용 추출
+							if( StringUtils.isNotEmpty( lst.getLinkMtdCts() )  && JsoupUtil.isRegex(patternUrl, siteLinkData.getDataLink()) ) {
+								Method getContent = clasz.getMethod(lst.getLinkMtdCts(), SiteLinkData.class);
+								getContent.invoke(obj, siteLinkData);
+							}
+							
+							crawlingDao.insertSiteLinkData(siteLinkData);
 						}
 						
-						crawlingDao.insertSiteLinkData(siteLinkData);
+						linkCnt++;
 					}
-					
-					linkCnt++;
 					
 				}
 				
